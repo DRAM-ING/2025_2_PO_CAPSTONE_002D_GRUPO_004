@@ -1,0 +1,8 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<OSDM_Design class="oracle.dbtools.crest.model.design.Design" name="modelo entidad relacion capstone" id="B2B73ED0-5AAE-087B-E048-EEAA64B2246B" version="3.5">
+<createdBy>Diego</createdBy>
+<createdTime>2025-10-16 16:55:22 UTC</createdTime>
+<ownerDesignName>modelo entidad relacion capstone</ownerDesignName>
+<capitalNames>false</capitalNames>
+<designId>B2B73ED0-5AAE-087B-E048-EEAA64B2246B</designId>
+</OSDM_Design>
