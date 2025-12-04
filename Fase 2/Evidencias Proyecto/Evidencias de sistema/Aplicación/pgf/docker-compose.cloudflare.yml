@@ -1,0 +1,48 @@
+# Docker Compose para uso con Cloudflare Tunnel
+# Este archivo extiende docker-compose.yml con configuraciones específicas para Cloudflare
+#
+# IMPORTANTE: Configurar en .env o .env.prod:
+# - CLOUDFLARE_TUNNEL_URL=https://random-name.trycloudflare.com
+# - AWS_PUBLIC_URL_PREFIX=https://random-name-localstack.trycloudflare.com
+#   O si LocalStack está en el mismo túnel: https://random-name.trycloudflare.com/localstack
+
+version: '3.8'
+
+services:
+  api:
+    environment:
+      # Configuración para Cloudflare Tunnel
+      - DJANGO_ENV=prod
+      - ALLOWED_HOSTS=${ALLOWED_HOSTS:-localhost,127.0.0.1}
+      - CORS_ALLOWED_ORIGINS=${CORS_ALLOWED_ORIGINS:-http://localhost:3000}
+      - CSRF_TRUSTED_ORIGINS=${CSRF_TRUSTED_ORIGINS:-http://localhost:3000}
+      - SECURE_PROXY_SSL_HEADER=HTTP_CF_VISITOR,HTTP_X_FORWARDED_PROTO
+      # Cloudflare envía el protocolo en HTTP_CF_VISITOR
+      # Configuración de Cloudflare Tunnel para LocalStack
+      - CLOUDFLARE_TUNNEL_URL=${CLOUDFLARE_TUNNEL_URL:-}
+      - AWS_PUBLIC_URL_PREFIX=${AWS_PUBLIC_URL_PREFIX:-}
+    command: poetry run daphne -b 0.0.0.0 -p 8000 pgf_core.asgi:application
+
+  web:
+    environment:
+      # URLs públicas a través de Cloudflare
+      - NEXT_PUBLIC_API_BASE_URL=${NEXT_PUBLIC_API_BASE_URL:-http://localhost:8000}
+      - NEXT_PUBLIC_S3_ENDPOINT=${NEXT_PUBLIC_S3_ENDPOINT:-http://localhost:4566}
+      - NEXT_PUBLIC_S3_BUCKET=${NEXT_PUBLIC_S3_BUCKET:-pgf-evidencias-dev}
+      - HOST=0.0.0.0
+      - PORT=3000
+      # Configuración de Cloudflare Tunnel (para referencia en frontend si es necesario)
+      - CLOUDFLARE_TUNNEL_URL=${CLOUDFLARE_TUNNEL_URL:-}
+  
+  worker:
+    environment:
+      # Worker también necesita acceso a Cloudflare Tunnel para tareas que generen URLs
+      - CLOUDFLARE_TUNNEL_URL=${CLOUDFLARE_TUNNEL_URL:-}
+      - AWS_PUBLIC_URL_PREFIX=${AWS_PUBLIC_URL_PREFIX:-}
+  
+  beat:
+    environment:
+      # Beat también necesita acceso a Cloudflare Tunnel para tareas que generen URLs
+      - CLOUDFLARE_TUNNEL_URL=${CLOUDFLARE_TUNNEL_URL:-}
+      - AWS_PUBLIC_URL_PREFIX=${AWS_PUBLIC_URL_PREFIX:-}
+

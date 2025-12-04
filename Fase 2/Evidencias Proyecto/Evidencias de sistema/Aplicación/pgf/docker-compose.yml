@@ -1,0 +1,207 @@
+services:
+  db:
+    image: postgres:16
+    container_name: pgf-db
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-pgf}
+      POSTGRES_USER: ${POSTGRES_USER:-pgf}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-pgf}
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-pgf} -d ${POSTGRES_DB:-pgf}"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+
+  redis:
+    image: redis:7
+    container_name: pgf-redis
+    ports:
+      - "6379:6379"
+
+  api:
+    build:
+      context: .              # <— tu Dockerfile está en la raíz del repo
+      dockerfile: Dockerfile
+    container_name: pgf-api
+    env_file: .env
+    command: poetry run daphne -b 0.0.0.0 -p 8000 pgf_core.asgi:application
+    volumes:
+      - .:/app                # hot reload de Django en dev
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_started
+      localstack:
+        condition: service_started
+
+  worker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: pgf-worker
+    env_file: .env
+    command: poetry run celery -A pgf_core worker -l info
+    depends_on:
+      - api
+      - redis
+      - localstack
+    volumes:
+      - .:/app
+
+  beat:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: pgf-beat
+    env_file: .env
+    command: poetry run celery -A pgf_core beat -l info
+    depends_on:
+      - api
+      - redis
+      - db
+    volumes:
+      - .:/app
+
+  # --- S3 local (LocalStack) ---
+  localstack:
+    image: localstack/localstack:latest
+    container_name: pgf-localstack
+    environment:
+      - SERVICES=s3
+      - DEBUG=0
+      - AWS_DEFAULT_REGION=us-east-1
+      - HOSTNAME_EXTERNAL=localstack
+      - PERSISTENCE=1
+      - DATA_DIR=/var/lib/localstack/data
+      - LAMBDA_EXECUTOR=local
+      - DOCKER_HOST=unix:///var/run/docker.sock
+    ports:
+      - "4566:4566"
+    volumes:
+      - localstack_data:/var/lib/localstack/data
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:4566/_localstack/health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  local-init:
+    image: public.ecr.aws/aws-cli/aws-cli:latest
+    depends_on:
+      localstack:
+        condition: service_healthy
+    environment:
+      AWS_ACCESS_KEY_ID: test
+      AWS_SECRET_ACCESS_KEY: test
+      AWS_DEFAULT_REGION: us-east-1
+    entrypoint:
+      - sh
+      - -lc
+      - |
+        set -e
+
+        # Esperar a que LocalStack esté completamente listo
+        echo "Esperando a que LocalStack esté listo..."
+        for i in 1 2 3 4 5; do
+          if curl -f http://localstack:4566/_localstack/health > /dev/null 2>&1; then
+            echo "LocalStack está listo"
+            break
+          fi
+          echo "Intento $i/5: LocalStack aún no está listo, esperando..."
+          sleep 2
+        done
+
+        # 1) Crea el bucket (si ya existe, no falla)
+        echo "Creando bucket..."
+        aws --endpoint-url=http://localstack:4566 s3api create-bucket \
+          --bucket pgf-evidencias-dev --region us-east-1 || true
+
+        # 2) Crea el JSON (sin BOM, sin CRLF) dentro del contenedor
+        cat > /tmp/cors.json <<'EOF'
+        {
+          "CORSRules": [
+            {
+              "AllowedHeaders": ["*"],
+              "AllowedMethods": ["GET","PUT","POST"],
+              "AllowedOrigins": [
+                "http://localhost:3000",
+                "http://127.0.0.1:3000",
+                "http://localhost:8000"
+              ],
+              "ExposeHeaders": ["ETag"],
+              "MaxAgeSeconds": 3000
+            }
+          ]
+        }
+        EOF
+
+        # 3) Aplica CORS desde archivo (usar file:/// y ruta absoluta)
+        echo "Aplicando configuración CORS..."
+        aws --endpoint-url=http://localstack:4566 s3api put-bucket-cors \
+          --bucket pgf-evidencias-dev \
+          --cors-configuration file:///tmp/cors.json || true
+
+        # 4) Verifica
+        echo "Verificando configuración..."
+        aws --endpoint-url=http://localstack:4566 s3api get-bucket-cors \
+          --bucket pgf-evidencias-dev || echo "CORS no configurado (puede ser normal)"
+
+        echo "✅ Bucket y CORS listos en LocalStack"
+    restart: "no"
+
+  web:
+    build:
+      context: ./frontend/pgf-frontend
+      dockerfile: Dockerfile
+    container_name: pgf-web
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+      - "51204:51204"  # Puerto para Vitest UI Dashboard
+    environment:
+      # La API dentro del compose se llama "api" y expone 8000
+      NEXT_PUBLIC_API_BASE_URL: "http://pgf-api:8000"
+      # Para el navegador (usuario) el endpoint de LocalStack es localhost
+      NEXT_PUBLIC_S3_ENDPOINT: "http://localhost:4566"
+      NEXT_PUBLIC_S3_BUCKET: "pgf-evidencias-dev"
+      HOST: "0.0.0.0"
+    depends_on:
+      - api
+      - localstack
+    volumes:
+      - ./frontend/pgf-frontend:/app
+      - /app/node_modules
+
+  # OWASP ZAP para escaneos de seguridad
+  zap:
+    image: ghcr.io/zaproxy/zaproxy:stable
+    container_name: pgf-zap
+    restart: "no"
+    ports:
+      - "8080:8080"
+      - "8090:8090"
+    volumes:
+      - ./test-results/security:/zap/wrk/:rw
+    environment:
+      - ZAP_PORT=8080
+    networks:
+      - default
+    # No se inicia automáticamente, se ejecuta bajo demanda
+    profiles:
+      - security
+
+
+
+
+volumes:
+  pg_data:
+  localstack_data:

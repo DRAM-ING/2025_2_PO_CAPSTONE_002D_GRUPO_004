@@ -1,0 +1,17 @@
+{
+  "name": "PGF - Plataforma de Gestión de Flota",
+  "short_name": "PGF",
+  "description": "Sistema de gestión de flota de vehículos",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#003DA5",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "any",
+      "type": "image/x-icon"
+    }
+  ]
+}
+

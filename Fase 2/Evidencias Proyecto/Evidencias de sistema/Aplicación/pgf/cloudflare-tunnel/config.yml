@@ -1,0 +1,25 @@
+# Configuración para túnel permanente (opcional)
+# Si no tienes dominio, usa Quick Tunnel: cloudflared tunnel --url http://localhost:PUERTO
+# Para más información, consulta GUIA_CLOUDFLARE_TUNNEL.md
+
+tunnel: YOUR_TUNNEL_ID
+credentials-file: C:\Users\luxo_\.cloudflared\YOUR_TUNNEL_ID.json
+
+ingress:
+  # Frontend (Next.js) - Sin hostname para URLs aleatorias de Cloudflare
+  - service: http://localhost:3000
+    originRequest:
+      noHappyEyeballs: true
+      connectTimeout: 30s
+      tcpKeepAlive: 30s
+
+  # API (Django) - Sin hostname para URLs aleatorias de Cloudflare
+  - service: http://localhost:8000
+    originRequest:
+      noHappyEyeballs: true
+      connectTimeout: 30s
+      tcpKeepAlive: 30s
+
+  # Catch-all rule (debe ir al final)
+  - service: http_status:404
+

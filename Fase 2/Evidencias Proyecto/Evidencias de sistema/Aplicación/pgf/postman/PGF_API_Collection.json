@@ -1,0 +1,997 @@
+{
+  "info": {
+    "name": "PGF API - Plataforma de Gestión de Flota",
+    "description": "Colección completa de endpoints de la API PGF para pruebas manuales",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "pgf-api"
+  },
+  "item": [
+    {
+      "name": "1. Autenticación",
+      "item": [
+        {
+          "name": "Login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 200) {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.environment.set('access_token', jsonData.access);",
+                  "    pm.environment.set('refresh_token', jsonData.refresh);",
+                  "    pm.environment.set('user_id', jsonData.user.id);",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"admin\",\n  \"password\": \"admin123\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/login/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "auth",
+                "login",
+                ""
+              ]
+            }
+          }
+        },
+        {
+          "name": "Refresh Token",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/auth/refresh/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "auth",
+                "refresh",
+                ""
+              ]
+            }
+          }
+        },
+        {
+          "name": "Obtener Usuario Actual (Me)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/users/me/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "users",
+                "me",
+                ""
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "2. Usuarios",
+      "item": [
+        {
+          "name": "Listar Usuarios",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/users/?page=1&page_size=20",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "users",
+                ""
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "page_size",
+                  "value": "20"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Crear Usuario",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"test_user\",\n  \"email\": \"test@example.com\",\n  \"password\": \"test123456\",\n  \"first_name\": \"Test\",\n  \"last_name\": \"User\",\n  \"rol\": \"MECANICO\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/users/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "users",
+                ""
+              ]
+            }
+          }
+        },
+        {
+          "name": "Obtener Usuario por ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/users/{{user_id}}/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "users",
+                "{{user_id}}",
+                ""
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "3. Vehículos",
+      "item": [
+        {
+          "name": "Listar Vehículos",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/vehicles/?page=1&page_size=20",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "vehicles",
+                ""
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "page_size",
+                  "value": "20"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Crear Vehículo",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"patente\": \"ABC123\",\n  \"marca\": \"Toyota\",\n  \"modelo\": \"Hilux\",\n  \"año\": 2020,\n  \"estado\": \"ACTIVO\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/vehicles/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "vehicles",
+                ""
+              ]
+            }
+          }
+        },
+        {
+          "name": "Registrar Ingreso",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 201) {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.environment.set('ingreso_id', jsonData.id);",
+                  "    if (jsonData.ot_generada) {",
+                  "        pm.environment.set('ot_id', jsonData.ot_generada.id);",
+                  "    }",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"patente\": \"ABC123\",\n  \"observaciones\": \"Ingreso para mantención\",\n  \"kilometraje\": 45000\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/vehicles/ingreso/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "vehicles",
+                "ingreso",
+                ""
+              ]
+            }
+          }
+        },
+        {
+          "name": "Registrar Salida",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ingreso_id\": \"{{ingreso_id}}\",\n  \"observaciones_salida\": \"Vehículo listo\",\n  \"kilometraje_salida\": 50000\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/vehicles/salida/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "vehicles",
+                "salida",
+                ""
+              ]
+            }
+          }
+        },
+        {
+          "name": "Ingresos del Día",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/vehicles/ingresos-hoy/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "vehicles",
+                "ingresos-hoy",
+                ""
+              ]
+            }
+          }
+        },
+        {
+          "name": "Generar Ticket PDF",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/vehicles/ingreso/{{ingreso_id}}/ticket/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "vehicles",
+                "ingreso",
+                "{{ingreso_id}}",
+                "ticket",
+                ""
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "4. Órdenes de Trabajo",
+      "item": [
+        {
+          "name": "Listar OT",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/work/ordenes/?page=1&page_size=20",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "work",
+                "ordenes",
+                ""
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "page_size",
+                  "value": "20"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Crear OT",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 201) {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.environment.set('ot_id', jsonData.id);",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"vehiculo\": \"{{vehicle_id}}\",\n  \"motivo\": \"Mantenimiento preventivo\",\n  \"supervisor\": \"{{user_id}}\",\n  \"site\": \"SITE001\",\n  \"prioridad\": \"MEDIA\",\n  \"tipo\": \"MANTENCION\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/work/ordenes/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "work",
+                "ordenes",
+                ""
+              ]
+            }
+          }
+        },
+        {
+          "name": "Obtener OT por ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/work/ordenes/{{ot_id}}/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "work",
+                "ordenes",
+                "{{ot_id}}",
+                ""
+              ]
+            }
+          }
+        },
+        {
+          "name": "Timeline de OT",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/work/ordenes/{{ot_id}}/timeline/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "work",
+                "ordenes",
+                "{{ot_id}}",
+                "timeline",
+                ""
+              ]
+            }
+          }
+        },
+        {
+          "name": "Listar Comentarios",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/work/comentarios/?ot={{ot_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "work",
+                "comentarios",
+                ""
+              ],
+              "query": [
+                {
+                  "key": "ot",
+                  "value": "{{ot_id}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Crear Comentario",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ot\": \"{{ot_id}}\",\n  \"contenido\": \"Comentario de prueba con @usuario\",\n  \"menciones\": [\"@supervisor_test\"]\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/work/comentarios/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "work",
+                "comentarios",
+                ""
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "5. Evidencias",
+      "item": [
+        {
+          "name": "Obtener Presigned URL",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 200) {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.environment.set('presigned_url', jsonData.upload.url);",
+                  "    pm.environment.set('file_url', jsonData.file_url);",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ot\": \"{{ot_id}}\",\n  \"filename\": \"test.jpg\",\n  \"content_type\": \"image/jpeg\",\n  \"file_size\": 1024000\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/work/evidencias/presigned/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "work",
+                "evidencias",
+                "presigned",
+                ""
+              ]
+            }
+          }
+        },
+        {
+          "name": "Listar Evidencias",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/work/evidencias/?ot={{ot_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "work",
+                "evidencias",
+                ""
+              ],
+              "query": [
+                {
+                  "key": "ot",
+                  "value": "{{ot_id}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Crear Evidencia",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ot\": \"{{ot_id}}\",\n  \"url\": \"{{file_url}}\",\n  \"tipo\": \"FOTO\",\n  \"descripcion\": \"Evidencia de prueba\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/work/evidencias/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "work",
+                "evidencias",
+                ""
+              ]
+            }
+          }
+        },
+        {
+          "name": "Invalidar Evidencia",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"motivo\": \"Evidencia incorrecta, requiere retomar\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/work/evidencias/{{evidencia_id}}/invalidar/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "work",
+                "evidencias",
+                "{{evidencia_id}}",
+                "invalidar",
+                ""
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "6. Choferes (Drivers)",
+      "item": [
+        {
+          "name": "Listar Choferes",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/drivers/choferes/?page=1&page_size=20",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "drivers",
+                "choferes",
+                ""
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "page_size",
+                  "value": "20"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Crear Chofer",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 201) {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.environment.set('chofer_id', jsonData.id);",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre_completo\": \"Juan Pérez\",\n  \"rut\": \"123456789\",\n  \"telefono\": \"+56912345678\",\n  \"email\": \"juan.perez@example.com\",\n  \"zona\": \"Zona Centro\",\n  \"sucursal\": \"Sucursal Principal\",\n  \"activo\": true\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/drivers/choferes/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "drivers",
+                "choferes",
+                ""
+              ]
+            }
+          }
+        },
+        {
+          "name": "Obtener Chofer por ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/drivers/choferes/{{chofer_id}}/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "drivers",
+                "choferes",
+                "{{chofer_id}}",
+                ""
+              ]
+            }
+          }
+        },
+        {
+          "name": "Asignar Vehículo a Chofer",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"vehiculo_id\": \"{{vehicle_id}}\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/drivers/choferes/{{chofer_id}}/asignar-vehiculo/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "drivers",
+                "choferes",
+                "{{chofer_id}}",
+                "asignar-vehiculo",
+                ""
+              ]
+            }
+          }
+        },
+        {
+          "name": "Historial de Asignaciones",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/drivers/choferes/{{chofer_id}}/historial/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "drivers",
+                "choferes",
+                "{{chofer_id}}",
+                "historial",
+                ""
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "7. Reportes",
+      "item": [
+        {
+          "name": "Dashboard Ejecutivo",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/reports/dashboard-ejecutivo/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "reports",
+                "dashboard-ejecutivo",
+                ""
+              ]
+            }
+          }
+        },
+        {
+          "name": "Generar PDF Diario",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/reports/pdf/?tipo=diario&fecha_inicio=2025-11-19",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "reports",
+                "pdf",
+                ""
+              ],
+              "query": [
+                {
+                  "key": "tipo",
+                  "value": "diario"
+                },
+                {
+                  "key": "fecha_inicio",
+                  "value": "2025-11-19"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8000/api/v1",
+      "type": "string",
+      "description": "URL base de la API. Para Docker usa: http://localhost:8000/api/v1, para desarrollo local: http://127.0.0.1:8000/api/v1"
+    },
+    {
+      "key": "access_token",
+      "value": "",
+      "type": "string",
+      "description": "Token JWT de acceso (se establece automáticamente después del login)"
+    },
+    {
+      "key": "refresh_token",
+      "value": "",
+      "type": "string",
+      "description": "Token JWT de refresh (se establece automáticamente después del login)"
+    },
+    {
+      "key": "user_id",
+      "value": "",
+      "type": "string",
+      "description": "ID del usuario actual (se establece automáticamente después del login)"
+    },
+    {
+      "key": "ot_id",
+      "value": "",
+      "type": "string",
+      "description": "ID de la orden de trabajo (se establece automáticamente al crear una OT)"
+    },
+    {
+      "key": "vehicle_id",
+      "value": "",
+      "type": "string",
+      "description": "ID del vehículo (UUID)"
+    },
+    {
+      "key": "chofer_id",
+      "value": "",
+      "type": "string",
+      "description": "ID del chofer (UUID, se establece automáticamente al crear un chofer)"
+    },
+    {
+      "key": "ingreso_id",
+      "value": "",
+      "type": "string",
+      "description": "ID del ingreso de vehículo (se establece automáticamente al registrar un ingreso)"
+    },
+    {
+      "key": "evidencia_id",
+      "value": "",
+      "type": "string",
+      "description": "ID de la evidencia (se establece automáticamente al crear una evidencia)"
+    }
+  ]
+}

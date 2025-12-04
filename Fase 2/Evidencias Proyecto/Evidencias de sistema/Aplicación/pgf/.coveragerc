@@ -1,0 +1,53 @@
+# Configuración de cobertura para pytest-cov
+[run]
+source = apps
+omit = 
+    */migrations/*
+    */tests/*
+    */test.py
+    */test_*.py
+    */__pycache__/*
+    */venv/*
+    */env/*
+    */manage.py
+    */settings/*
+    */celery.py
+    */asgi.py
+    */wsgi.py
+    */urls.py
+    */admin.py
+    */apps.py
+    */routing.py
+    */consumers.py
+    */middleware.py
+    */filters.py
+    */presigned_url_view.py
+    */tasks*.py
+    */pdf_generator*.py
+    */__init__.py
+
+[report]
+exclude_lines =
+    pragma: no cover
+    def __repr__
+    raise AssertionError
+    raise NotImplementedError
+    if __name__ == .__main__.:
+    if TYPE_CHECKING:
+    @abstractmethod
+    class .*\bProtocol\):
+    @(abc\.)?abstractmethod
+
+precision = 2
+show_missing = True
+skip_covered = False
+
+[html]
+directory = test-results/coverage
+
+[xml]
+output = test-results/coverage/coverage.xml
+
+[json]
+output = test-results/coverage/coverage.json
+

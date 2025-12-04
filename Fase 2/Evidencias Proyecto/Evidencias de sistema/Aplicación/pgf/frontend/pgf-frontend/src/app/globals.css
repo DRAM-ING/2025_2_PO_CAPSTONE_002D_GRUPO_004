@@ -1,0 +1,632 @@
+/* ============================================================
+   🔷 SISTEMA GLOBAL DE DISEÑO (Design Tokens)
+   ============================================================ */
+
+@import "tailwindcss";
+
+:root {
+  --font-main: 'Inter', system-ui, sans-serif;
+
+  /* Colores PepsiCo */
+  --pepsico-blue: #003DA5;
+  --pepsico-blue-light: #0052CC;
+  --pepsico-blue-dark: #002D7A;
+  --pepsico-red: #E60012;
+  --pepsico-red-light: #FF1A2E;
+  --pepsico-red-dark: #CC0010;
+  --pepsico-cyan: #00B4E6;
+  --pepsico-orange: #FF6B35;
+  --pepsico-green: #00A859;
+
+  /* Colores principales - Mejorado contraste */
+  --color-bg: #f5f7fa;
+  --color-text: #111827; /* Más oscuro para mejor legibilidad */
+  --color-text-secondary: #374151; /* Texto secundario más oscuro */
+  --color-card: #ffffff;
+
+  --color-primary: var(--pepsico-blue);
+  --color-primary-hover: var(--pepsico-blue-dark);
+  --color-primary-light: var(--pepsico-blue-light);
+
+  --color-danger: var(--pepsico-red);
+  --color-danger-hover: var(--pepsico-red-dark);
+  --color-danger-light: var(--pepsico-red-light);
+
+  --color-border: #e5e7eb;
+  --color-border-light: #f3f4f6;
+
+  /* Radios y sombras */
+  --radius: 10px;
+  --radius-lg: 16px;
+  --shadow: 0 2px 8px rgba(0, 61, 165, 0.1);
+  --shadow-lg: 0 8px 24px rgba(0, 61, 165, 0.15);
+  --shadow-xl: 0 12px 32px rgba(0, 61, 165, 0.2);
+}
+
+/* Dark Mode automático */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #0f1419;
+    --color-text: #f3f4f6;
+    --color-card: #1a1f2e;
+    --color-border: #2d3748;
+    --color-border-light: #1a1f2e;
+    --shadow: 0 2px 8px rgba(0, 61, 165, 0.2);
+    --shadow-lg: 0 8px 24px rgba(0, 61, 165, 0.25);
+    --shadow-xl: 0 12px 32px rgba(0, 61, 165, 0.3);
+  }
+}
+
+/* ============================================================
+   🔷 RESETEO BASE + TIPOGRAFÍA
+   ============================================================ */
+
+html, body {
+  @apply m-0 p-0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-main);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Contenedor universal para páginas */
+.page {
+  @apply max-w-6xl mx-auto p-6;
+}
+
+
+/* ============================================================
+   🔷 CARDS PROFESIONALES
+   ============================================================ */
+
+.card {
+  background: var(--color-card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--color-border);
+  @apply p-6;
+  transition: all 0.3s ease;
+  color: var(--color-text); /* Texto más oscuro en cards */
+}
+
+.dark .card {
+  color: #f3f4f6; /* Texto claro en modo oscuro */
+}
+
+.card:hover {
+  box-shadow: var(--shadow-xl);
+  transform: translateY(-2px);
+}
+
+.card-header {
+  @apply pb-4 mb-4 border-b border-gray-200 dark:border-gray-700;
+}
+
+.card-title {
+  @apply text-xl font-bold;
+  color: var(--color-text); /* Título más oscuro */
+}
+
+.dark .card-title {
+  color: #ffffff; /* Título blanco en modo oscuro */
+}
+
+/* ============================================================
+   🔷 TÍTULOS Y TEXTO
+   ============================================================ */
+
+.h1 { @apply text-3xl font-bold mb-4; }
+.h2 { @apply text-2xl font-semibold mb-3; }
+.h3 { @apply text-xl font-semibold mb-2; }
+
+.text-muted { 
+  color: var(--color-text-secondary); /* Texto secundario más oscuro */
+}
+
+.dark .text-muted {
+  color: #d1d5db; /* Texto secundario más claro en modo oscuro */
+}
+
+/* ============================================================
+   🔷 TABLAS PROFESIONALES
+   ============================================================ */
+
+.table {
+  @apply w-full border-collapse bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden;
+  border: 1px solid var(--color-border);
+}
+
+.table thead {
+  @apply bg-gradient-to-r from-[#003DA5] to-[#0052CC] text-white;
+}
+
+.table th {
+  @apply p-4 text-sm font-bold border-b border-white/20;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.table td {
+  @apply p-4 text-sm border-b border-gray-200 dark:border-gray-700;
+}
+
+.table-row {
+  @apply hover:bg-[#003DA5]/5 dark:hover:bg-[#003DA5]/10 transition-all cursor-pointer;
+}
+
+.table-row:last-child td {
+  @apply border-b-0;
+}
+
+/* ============================================================
+   🔷 BOTONES MODERNOS
+   ============================================================ */
+
+.btn {
+  @apply px-4 py-2 rounded-md font-semibold transition-all border border-transparent;
+  border-radius: var(--radius);
+}
+
+/* PRINCIPAL */
+.btn-primary {
+  background: var(--color-primary);
+  color: white;
+}
+.btn-primary:hover {
+  background: var(--color-primary-hover);
+}
+
+/* SECUNDARIO */
+.btn-secondary {
+  @apply bg-gray-200 hover:bg-gray-300 text-gray-800;
+}
+
+/* PELIGRO */
+.btn-danger {
+  background: var(--color-danger);
+  color: white;
+}
+.btn-danger:hover {
+  background: var(--color-danger-hover);
+}
+
+/* DESHABILITADO */
+.btn-disabled {
+  @apply opacity-50 cursor-not-allowed;
+}
+
+/* Para íconos */
+.btn-icon {
+  @apply p-2 rounded-full hover:bg-gray-200;
+}
+
+/* ============================================================
+   🔷 INPUTS + FORMULARIOS
+   ============================================================ */
+
+.input {
+  @apply w-full px-4 py-3 border-2 bg-white dark:bg-gray-700 rounded-lg;
+  border-color: var(--color-border);
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+  color: #000000 !important; /* Texto negro en inputs para máxima legibilidad */
+}
+
+.input::placeholder {
+  color: #6b7280 !important; /* Placeholder gris medio para mejor visibilidad */
+}
+
+/* Select también debe tener texto negro */
+select.input {
+  color: #000000 !important;
+}
+
+select.input option {
+  color: #000000;
+  background: #ffffff;
+}
+
+.dark .input {
+  color: #f3f4f6 !important; /* Texto claro en modo oscuro */
+}
+
+.dark .input::placeholder {
+  color: #9ca3af !important; /* Placeholder más claro en modo oscuro */
+}
+
+.dark select.input {
+  color: #f3f4f6 !important;
+}
+
+.dark select.input option {
+  color: #f3f4f6;
+  background: #374151;
+}
+
+.input:focus {
+  @apply outline-none ring-2 ring-[#003DA5];
+  border-color: var(--pepsico-blue);
+  box-shadow: 0 0 0 3px rgba(0, 61, 165, 0.1);
+}
+
+.input:hover {
+  border-color: var(--pepsico-blue-light);
+}
+
+.label {
+  @apply text-sm font-semibold mb-1 block;
+  color: var(--color-text); /* Texto más oscuro para mejor legibilidad */
+}
+
+.label.text-muted {
+  color: var(--color-text-secondary);
+}
+
+textarea.input {
+  @apply min-h-[120px];
+}
+
+/* Select */
+select.input {
+  @apply appearance-none bg-white;
+  color: #000000 !important; /* Texto negro en selects */
+}
+
+select.input option {
+  color: #000000;
+  background: #ffffff;
+}
+
+/* Asegurar que todos los inputs tengan texto negro en modo claro */
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="password"],
+input[type="date"],
+input[type="time"],
+input[type="datetime-local"],
+textarea,
+select {
+  color: #000000 !important; /* Texto negro por defecto */
+}
+
+input[type="text"]::placeholder,
+input[type="number"]::placeholder,
+input[type="email"]::placeholder,
+input[type="password"]::placeholder,
+textarea::placeholder {
+  color: #6b7280 !important; /* Placeholder gris medio */
+}
+
+/* En modo oscuro, texto claro */
+.dark input[type="text"],
+.dark input[type="number"],
+.dark input[type="email"],
+.dark input[type="password"],
+.dark input[type="date"],
+.dark input[type="time"],
+.dark input[type="datetime-local"],
+.dark textarea,
+.dark select {
+  color: #f3f4f6 !important; /* Texto claro en modo oscuro */
+}
+
+.dark input[type="text"]::placeholder,
+.dark input[type="number"]::placeholder,
+.dark input[type="email"]::placeholder,
+.dark input[type="password"]::placeholder,
+.dark textarea::placeholder {
+  color: #9ca3af !important; /* Placeholder más claro en modo oscuro */
+}
+
+/* ============================================================
+   🔷 SECCIONES Y LAYOUT
+   ============================================================ */
+
+.section {
+  @apply bg-white dark:bg-gray-800 shadow-lg rounded-xl p-6 mb-6;
+  border: 1px solid var(--color-border);
+  transition: all 0.3s ease;
+  color: var(--color-text); /* Texto más oscuro en secciones */
+}
+
+.section h2,
+.section h3,
+.section h4 {
+  color: var(--color-text); /* Títulos más oscuros */
+  font-weight: 600;
+}
+
+.dark .section {
+  color: #f3f4f6; /* Texto claro en modo oscuro */
+}
+
+.dark .section h2,
+.dark .section h3,
+.dark .section h4 {
+  color: #ffffff; /* Títulos blancos en modo oscuro */
+}
+
+.section:hover {
+  box-shadow: var(--shadow-xl);
+}
+
+/* Contenedor centrado */
+.center {
+  @apply flex justify-center items-center;
+}
+
+/* Grid adaptable */
+.grid-auto {
+  @apply grid gap-6;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+/* ============================================================
+   🔷 SCROLLBAR MODERNO
+   ============================================================ */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #e5e7eb;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #9ca3af;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #6b7280;
+}
+
+/* ============================================================
+   🔷 UTILIDADES PERSONALIZADAS
+   ============================================================ */
+
+/* Espaciado entre secciones */
+.space-section {
+  @apply space-y-6;
+}
+
+/* Línea divisoria */
+.divider {
+  @apply border-t border-gray-300 my-6;
+}
+
+
+/* ------------------------------
+   GLOBAL GENERAL
+------------------------------ */
+body {
+  background: var(--color-bg);
+  font-family: "Inter", sans-serif;
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+th {
+  font-weight: 600;
+  color: #374151;
+}
+
+td, th {
+  padding: 0.75rem;
+}
+
+.shadow {
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+}
+
+/* ------------------------------
+   ANIMACIONES SUAVES
+------------------------------ */
+.card-animated {
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+
+.card-animated:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 22px rgba(0,0,0,0.12);
+}
+
+/* ------------------------------
+   BOTONES
+------------------------------ */
+
+.btn-primary {
+  background: var(--pepsico-blue);
+  color: white;
+  padding: 0.65rem 1.4rem;
+  border-radius: var(--radius);
+  transition: all 0.2s ease;
+  font-weight: 600;
+  box-shadow: var(--shadow);
+}
+
+.btn-primary:hover {
+  background: var(--pepsico-blue-dark);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-1px);
+}
+
+/* Filtros de OT */
+.filter-btn {
+  padding: 0.55rem 1.2rem;
+  border-radius: 8px;
+  background: #e5e7eb;
+  transition: .2s;
+}
+
+.filter-btn.active {
+  background: var(--pepsico-blue);
+  color: white;
+  box-shadow: var(--shadow);
+}
+
+.filter-btn:hover {
+  background: #d1d5db;
+}
+
+/* Links */
+.action-link {
+  color: var(--pepsico-blue);
+  transition: .2s;
+  font-weight: 500;
+}
+
+.action-link:hover {
+  color: var(--pepsico-blue-dark);
+}
+
+.action-link:hover {
+  text-decoration: underline;
+}
+
+/* Tabla */
+tbody tr:hover {
+  background: #f9fafb;
+}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* --------------------------
+   GENERAL - MEJORADO CONTRASTE
+--------------------------- */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  color: var(--color-text); /* Texto más oscuro por defecto */
+}
+
+/* Mejorar contraste de todos los textos */
+p, span, div, label, h1, h2, h3, h4, h5, h6 {
+  color: inherit; /* Hereda el color del contenedor */
+}
+
+/* Textos en modo claro - más oscuros */
+:not(.dark) p,
+:not(.dark) span:not(.text-muted),
+:not(.dark) div:not(.text-muted),
+:not(.dark) label {
+  color: #111827; /* Texto muy oscuro para mejor legibilidad */
+}
+
+:not(.dark) h1,
+:not(.dark) h2,
+:not(.dark) h3,
+:not(.dark) h4,
+:not(.dark) h5,
+:not(.dark) h6 {
+  color: #111827; /* Títulos muy oscuros */
+}
+
+/* Textos en modo oscuro - más claros */
+.dark p,
+.dark span:not(.text-muted),
+.dark div:not(.text-muted),
+.dark label {
+  color: #f3f4f6; /* Texto muy claro en modo oscuro */
+}
+
+.dark h1,
+.dark h2,
+.dark h3,
+.dark h4,
+.dark h5,
+.dark h6 {
+  color: #ffffff; /* Títulos blancos en modo oscuro */
+}
+
+/* --------------------------
+   DARK MODE OVERRIDES
+--------------------------- */
+.dark table {
+  color: #e5e7eb;
+}
+
+.dark th {
+  color: #d1d5db;
+}
+
+.dark td {
+  color: #e5e7eb;
+}
+
+.dark .shadow {
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.08);
+}
+
+/* --------------------------
+   ANIMACIONES PRO
+--------------------------- */
+.card-animated {
+  transition: transform .15s ease, box-shadow .2s ease;
+}
+
+.card-animated:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
+
+.dark .card-animated:hover {
+  box-shadow: 0 8px 24px rgba(255,255,255,0.08);
+}
+
+/* --------------------------
+   BOTONES PRO
+--------------------------- */
+.btn-primary {
+  background: var(--pepsico-blue);
+  @apply text-white px-5 py-2.5 rounded-lg shadow-lg hover:shadow-xl transition-all font-semibold;
+}
+
+.btn-primary:hover {
+  background: var(--pepsico-blue-dark);
+  transform: translateY(-1px);
+}
+
+.action-link {
+  color: var(--pepsico-blue);
+  @apply dark:text-[#00B4E6] hover:underline transition font-medium;
+}
+
+.action-link:hover {
+  color: var(--pepsico-blue-dark);
+}
+
+/* --------------------------
+   FILTROS
+--------------------------- */
+.filter-btn {
+  @apply px-4 py-2 rounded-lg bg-gray-200 dark:bg-gray-700 transition;
+}
+
+.filter-btn.active {
+  background: var(--pepsico-blue);
+  @apply text-white shadow-md;
+}
+
+/* --------------------------
+   ANIMACIONES
+--------------------------- */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-4px); }
+  20%, 40%, 60%, 80% { transform: translateX(4px); }
+}
+
+.animate-shake {
+  animation: shake 0.5s ease-in-out;
+}

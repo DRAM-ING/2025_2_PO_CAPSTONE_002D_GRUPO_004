@@ -1,0 +1,155 @@
+services:
+  db:
+    image: postgres:16-alpine
+    restart: always
+    env_file:
+      - .env.prod
+    volumes:
+      - postgres_data_prod:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=pgf
+      - POSTGRES_USER=pgf
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U pgf" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    ports:
+      - "5432:5432"
+
+  redis:
+    image: redis:7-alpine
+    restart: always
+    env_file:
+      - .env.prod
+    environment:
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
+    command: >
+      sh -c "
+      if [ -z \"$$REDIS_PASSWORD\" ]; then
+        redis-server
+      else
+        redis-server --requirepass \"$$REDIS_PASSWORD\"
+      fi
+      "
+    volumes:
+      - redis_data_prod:/data
+    healthcheck:
+      test: >
+        sh -c "
+        if [ -z \"$$REDIS_PASSWORD\" ]; then
+          redis-cli ping | grep PONG
+        else
+          redis-cli -a \"$$REDIS_PASSWORD\" ping | grep PONG
+        fi
+        "
+      interval: 5s
+      timeout: 3s
+      retries: 5
+    ports:
+      - "6379:6379"
+
+  api:
+    build: .
+    restart: always
+    env_file:
+      - .env.prod
+    command: daphne -b 0.0.0.0 -p 8000 pgf_core.asgi:application
+    volumes:
+      - static_volume:/app/staticfiles
+      - media_volume:/app/media
+    environment:
+      - DJANGO_ENV=prod
+      - DEBUG=False
+      - SECRET_KEY=${SECRET_KEY}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
+      - ALLOWED_HOSTS=*
+      - DATABASE_URL=postgres://pgf:${POSTGRES_PASSWORD}@db:5432/pgf
+      - REDIS_URL=redis://:${REDIS_PASSWORD}@redis:6379/2
+      - CELERY_BROKER_URL=redis://:${REDIS_PASSWORD}@redis:6379/0
+      - CELERY_RESULT_BACKEND=redis://:${REDIS_PASSWORD}@redis:6379/1
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - AWS_STORAGE_BUCKET_NAME=${AWS_STORAGE_BUCKET_NAME}
+      - AWS_S3_REGION_NAME=${AWS_S3_REGION_NAME}
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  worker:
+    build: .
+    restart: always
+    env_file:
+      - .env.prod
+    command: celery -A pgf_core worker -l info
+    environment:
+      - DJANGO_ENV=prod
+      - DEBUG=False
+      - SECRET_KEY=${SECRET_KEY}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
+      - DATABASE_URL=postgres://pgf:${POSTGRES_PASSWORD}@db:5432/pgf
+      - REDIS_URL=redis://:${REDIS_PASSWORD}@redis:6379/2
+      - CELERY_BROKER_URL=redis://:${REDIS_PASSWORD}@redis:6379/0
+      - CELERY_RESULT_BACKEND=redis://:${REDIS_PASSWORD}@redis:6379/1
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - AWS_STORAGE_BUCKET_NAME=${AWS_STORAGE_BUCKET_NAME}
+      - AWS_S3_REGION_NAME=${AWS_S3_REGION_NAME}
+    depends_on:
+      - db
+      - redis
+
+  beat:
+    build: .
+    restart: always
+    env_file:
+      - .env.prod
+    command: celery -A pgf_core beat -l info
+    environment:
+      - DJANGO_ENV=prod
+      - DEBUG=False
+      - SECRET_KEY=${SECRET_KEY}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
+      - DATABASE_URL=postgres://pgf:${POSTGRES_PASSWORD}@db:5432/pgf
+      - REDIS_URL=redis://:${REDIS_PASSWORD}@redis:6379/2
+      - CELERY_BROKER_URL=redis://:${REDIS_PASSWORD}@redis:6379/0
+      - CELERY_RESULT_BACKEND=redis://:${REDIS_PASSWORD}@redis:6379/1
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - AWS_STORAGE_BUCKET_NAME=${AWS_STORAGE_BUCKET_NAME}
+      - AWS_S3_REGION_NAME=${AWS_S3_REGION_NAME}
+    depends_on:
+      - db
+      - redis
+
+  web:
+    build:
+      context: ./frontend/pgf-frontend
+      dockerfile: Dockerfile
+    restart: always
+    environment:
+      - NEXT_PUBLIC_API_BASE_URL=http://api:8000
+      - NODE_ENV=production
+    ports:
+      - "3000:3000"
+    depends_on:
+      - api
+
+  tunnel:
+    image: cloudflare/cloudflared:latest
+    restart: always
+    command: tunnel --url http://web:3000
+    depends_on:
+      - web
+
+volumes:
+  postgres_data_prod:
+  redis_data_prod:
+  static_volume:
+  media_volume:

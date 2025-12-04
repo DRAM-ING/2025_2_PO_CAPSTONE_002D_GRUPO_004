@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <mxfile host="codeviz.app" modified="2025-11-30T18:08:43.855Z" agent="CodeViz Exporter" version="14.6.5" type="device">
+          <diagram id="codeviz-diagram" name="System Diagram">
+            <mxGraphModel dx="1000" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+              <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="ot_workflow_activity.cv::part17" value="" style="html=1;whiteSpace=wrap;container=1;fillColor=#dae8fc;strokeColor=#6c8ebf;dashed=1;fillOpacity=20;strokeWidth=2;containerType=none;recursiveResize=0;movable=1;resizable=1;autosize=0;dropTarget=0" vertex="1" parent="ot_workflow_activity.cv::forkg13">
+                  <mxGeometry x="82" y="41" width="181" height="212" as="geometry"/>
+                </mxCell>
+                <mxCell id="ot_workflow_activity.cv::part17_label" value="de Datos" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;labelBackgroundColor=white;spacing=5" vertex="1" parent="ot_workflow_activity.cv::forkg13">
+                  <mxGeometry x="90" y="49" width="105" height="24" as="geometry"/>
+                </mxCell>
+<mxCell id="ot_workflow_activity.cv::forkg13" value="" style="html=1;whiteSpace=wrap;container=1;fillColor=#dae8fc;strokeColor=#6c8ebf;dashed=1;fillOpacity=20;strokeWidth=2;containerType=none;recursiveResize=0;movable=1;resizable=1;autosize=0;dropTarget=0" vertex="1" parent="ot_workflow_activity.cv::part11">
+                  <mxGeometry x="92.40147532406502" y="-631.1475695834474" width="147" height="212" as="geometry"/>
+                </mxCell>
+                <mxCell id="ot_workflow_activity.cv::forkg13_label" value="fork" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;labelBackgroundColor=white;spacing=5" vertex="1" parent="ot_workflow_activity.cv::part11">
+                  <mxGeometry x="100.40147532406502" y="-623.1475695834474" width="71" height="24" as="geometry"/>
+                </mxCell>
+<mxCell id="ot_workflow_activity.cv::part20" value="" style="html=1;whiteSpace=wrap;container=1;fillColor=#dae8fc;strokeColor=#6c8ebf;dashed=1;fillOpacity=20;strokeWidth=2;containerType=none;recursiveResize=0;movable=1;resizable=1;autosize=0;dropTarget=0" vertex="1" parent="ot_workflow_activity.cv::part11">
+                  <mxGeometry x="76.40147532406502" y="-166.14756958344742" width="181" height="212" as="geometry"/>
+                </mxCell>
+                <mxCell id="ot_workflow_activity.cv::part20_label" value="de Datos" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;labelBackgroundColor=white;spacing=5" vertex="1" parent="ot_workflow_activity.cv::part11">
+                  <mxGeometry x="84.40147532406502" y="-158.14756958344742" width="105" height="24" as="geometry"/>
+                </mxCell>
+<mxCell id="base.cv::pgf_system" value="" style="html=1;whiteSpace=wrap;container=1;fillColor=#dae8fc;strokeColor=#6c8ebf;dashed=1;fillOpacity=20;strokeWidth=2;containerType=none;recursiveResize=0;movable=1;resizable=1;autosize=0;dropTarget=0" vertex="1" parent="__uml__base.cv">
+                  <mxGeometry x="660" y="-986" width="1157" height="570" as="geometry"/>
+                </mxCell>
+                <mxCell id="base.cv::pgf_system_label" value="Sistema PGF" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;labelBackgroundColor=white;spacing=5" vertex="1" parent="__uml__base.cv">
+                  <mxGeometry x="668" y="-978" width="1081" height="24" as="geometry"/>
+                </mxCell>
+<mxCell id="ot_workflow_activity.cv::part2" value="" style="html=1;whiteSpace=wrap;container=1;fillColor=#dae8fc;strokeColor=#6c8ebf;dashed=1;fillOpacity=20;strokeWidth=2;containerType=none;recursiveResize=0;movable=1;resizable=1;autosize=0;dropTarget=0" vertex="1" parent="__uml__ot_workflow_activity.cv">
+                  <mxGeometry x="-321.19206814041104" y="-2234.4173083301066" width="229" height="212" as="geometry"/>
+                </mxCell>
+                <mxCell id="ot_workflow_activity.cv::part2_label" value="de Presentación" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;labelBackgroundColor=white;spacing=5" vertex="1" parent="__uml__ot_workflow_activity.cv">
+                  <mxGeometry x="-313.19206814041104" y="-2226.4173083301066" width="153" height="24" as="geometry"/>
+                </mxCell>
+<mxCell id="ot_workflow_activity.cv::part6" value="" style="html=1;whiteSpace=wrap;container=1;fillColor=#dae8fc;strokeColor=#6c8ebf;dashed=1;fillOpacity=20;strokeWidth=2;containerType=none;recursiveResize=0;movable=1;resizable=1;autosize=0;dropTarget=0" vertex="1" parent="__uml__ot_workflow_activity.cv">
+                  <mxGeometry x="-330.19206814041104" y="-1951.4173083301066" width="199" height="212" as="geometry"/>
+                </mxCell>
+                <mxCell id="ot_workflow_activity.cv::part6_label" value="de Negocio" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;labelBackgroundColor=white;spacing=5" vertex="1" parent="__uml__ot_workflow_activity.cv">
+                  <mxGeometry x="-322.19206814041104" y="-1943.4173083301066" width="123" height="24" as="geometry"/>
+                </mxCell>
+<mxCell id="ot_workflow_activity.cv::part9" value="" style="html=1;whiteSpace=wrap;container=1;fillColor=#dae8fc;strokeColor=#6c8ebf;dashed=1;fillOpacity=20;strokeWidth=2;containerType=none;recursiveResize=0;movable=1;resizable=1;autosize=0;dropTarget=0" vertex="1" parent="__uml__ot_workflow_activity.cv">
+                  <mxGeometry x="-349.19206814041104" y="-1729.4173083301066" width="181" height="212" as="geometry"/>
+                </mxCell>
+                <mxCell id="ot_workflow_activity.cv::part9_label" value="de Datos" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;labelBackgroundColor=white;spacing=5" vertex="1" parent="__uml__ot_workflow_activity.cv">
+                  <mxGeometry x="-341.19206814041104" y="-1721.4173083301066" width="105" height="24" as="geometry"/>
+                </mxCell>
+<mxCell id="ot_workflow_activity.cv::part11" value="" style="html=1;whiteSpace=wrap;container=1;fillColor=#dae8fc;strokeColor=#6c8ebf;dashed=1;fillOpacity=20;strokeWidth=2;containerType=none;recursiveResize=0;movable=1;resizable=1;autosize=0;dropTarget=0" vertex="1" parent="__uml__ot_workflow_activity.cv">
+                  <mxGeometry x="-412.290592816346" y="-1553.2697387466592" width="199" height="212" as="geometry"/>
+                </mxCell>
+                <mxCell id="ot_workflow_activity.cv::part11_label" value="de Negocio" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;labelBackgroundColor=white;spacing=5" vertex="1" parent="__uml__ot_workflow_activity.cv">
+                  <mxGeometry x="-404.290592816346" y="-1545.2697387466592" width="123" height="24" as="geometry"/>
+                </mxCell>
+<mxCell id="ot_workflow_activity.cv::part23" value="" style="html=1;whiteSpace=wrap;container=1;fillColor=#dae8fc;strokeColor=#6c8ebf;dashed=1;fillOpacity=20;strokeWidth=2;containerType=none;recursiveResize=0;movable=1;resizable=1;autosize=0;dropTarget=0" vertex="1" parent="__uml__ot_workflow_activity.cv">
+                  <mxGeometry x="-273.19206814041104" y="-720.4173083301066" width="229" height="212" as="geometry"/>
+                </mxCell>
+                <mxCell id="ot_workflow_activity.cv::part23_label" value="de Presentación" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;labelBackgroundColor=white;spacing=5" vertex="1" parent="__uml__ot_workflow_activity.cv">
+                  <mxGeometry x="-265.19206814041104" y="-712.4173083301066" width="153" height="24" as="geometry"/>
+                </mxCell>
+<mxCell id="ot_workflow_activity.cv::part25" value="" style="html=1;whiteSpace=wrap;container=1;fillColor=#dae8fc;strokeColor=#6c8ebf;dashed=1;fillOpacity=20;strokeWidth=2;containerType=none;recursiveResize=0;movable=1;resizable=1;autosize=0;dropTarget=0" vertex="1" parent="__uml__ot_workflow_activity.cv">
+                  <mxGeometry x="-330.19206814041104" y="-523.4173083301066" width="199" height="212" as="geometry"/>
+                </mxCell>
+                <mxCell id="ot_workflow_activity.cv::part25_label" value="de Negocio" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;labelBackgroundColor=white;spacing=5" vertex="1" parent="__uml__ot_workflow_activity.cv">
+                  <mxGeometry x="-322.19206814041104" y="-515.4173083301066" width="123" height="24" as="geometry"/>
+                </mxCell>
+<mxCell id="ot_workflow_activity.cv::part27" value="" style="html=1;whiteSpace=wrap;container=1;fillColor=#dae8fc;strokeColor=#6c8ebf;dashed=1;fillOpacity=20;strokeWidth=2;containerType=none;recursiveResize=0;movable=1;resizable=1;autosize=0;dropTarget=0" vertex="1" parent="__uml__ot_workflow_activity.cv">
+                  <mxGeometry x="-317.19206814041104" y="-356.4173083301066" width="181" height="212" as="geometry"/>
+                </mxCell>
+                <mxCell id="ot_workflow_activity.cv::part27_label" value="de Datos" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;labelBackgroundColor=white;spacing=5" vertex="1" parent="__uml__ot_workflow_activity.cv">
+                  <mxGeometry x="-309.19206814041104" y="-348.4173083301066" width="105" height="24" as="geometry"/>
+                </mxCell>
+<mxCell id="ot_workflow_activity.cv::part29" value="" style="html=1;whiteSpace=wrap;container=1;fillColor=#dae8fc;strokeColor=#6c8ebf;dashed=1;fillOpacity=20;strokeWidth=2;containerType=none;recursiveResize=0;movable=1;resizable=1;autosize=0;dropTarget=0" vertex="1" parent="__uml__ot_workflow_activity.cv">
+                  <mxGeometry x="-309.19206814041104" y="-195.4173083301066" width="199" height="212" as="geometry"/>
+                </mxCell>
+                <mxCell id="ot_workflow_activity.cv::part29_label" value="de Negocio" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;labelBackgroundColor=white;spacing=5" vertex="1" parent="__uml__ot_workflow_activity.cv">
+                  <mxGeometry x="-301.19206814041104" y="-187.4173083301066" width="123" height="24" as="geometry"/>
+                </mxCell>
+<mxCell id="ot_workflow_activity.cv::part31" value="" style="html=1;whiteSpace=wrap;container=1;fillColor=#dae8fc;strokeColor=#6c8ebf;dashed=1;fillOpacity=20;strokeWidth=2;containerType=none;recursiveResize=0;movable=1;resizable=1;autosize=0;dropTarget=0" vertex="1" parent="__uml__ot_workflow_activity.cv">
+                  <mxGeometry x="-313.19206814041104" y="-28.417308330106607" width="229" height="212" as="geometry"/>
+                </mxCell>
+                <mxCell id="ot_workflow_activity.cv::part31_label" value="de Presentación" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;labelBackgroundColor=white;spacing=5" vertex="1" parent="__uml__ot_workflow_activity.cv">
+                  <mxGeometry x="-305.19206814041104" y="-20.417308330106607" width="153" height="24" as="geometry"/>
+                </mxCell>
+<mxCell id="ot_workflow_activity.cv::part33" value="" style="html=1;whiteSpace=wrap;container=1;fillColor=#dae8fc;strokeColor=#6c8ebf;dashed=1;fillOpacity=20;strokeWidth=2;containerType=none;recursiveResize=0;movable=1;resizable=1;autosize=0;dropTarget=0" vertex="1" parent="__uml__ot_workflow_activity.cv">
+                  <mxGeometry x="-330.69206814041104" y="168.5826916698934" width="229" height="212" as="geometry"/>
+                </mxCell>
+                <mxCell id="ot_workflow_activity.cv::part33_label" value="de Presentación" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;labelBackgroundColor=white;spacing=5" vertex="1" parent="__uml__ot_workflow_activity.cv">
+                  <mxGeometry x="-322.69206814041104" y="176.5826916698934" width="153" height="24" as="geometry"/>
+                </mxCell>
+<mxCell id="ot_workflow_activity.cv::part37" value="" style="html=1;whiteSpace=wrap;container=1;fillColor=#dae8fc;strokeColor=#6c8ebf;dashed=1;fillOpacity=20;strokeWidth=2;containerType=none;recursiveResize=0;movable=1;resizable=1;autosize=0;dropTarget=0" vertex="1" parent="__uml__ot_workflow_activity.cv">
+                  <mxGeometry x="-320.69206814041104" y="451.5826916698934" width="199" height="212" as="geometry"/>
+                </mxCell>
+                <mxCell id="ot_workflow_activity.cv::part37_label" value="de Negocio" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;labelBackgroundColor=white;spacing=5" vertex="1" parent="__uml__ot_workflow_activity.cv">
+                  <mxGeometry x="-312.69206814041104" y="459.5826916698934" width="123" height="24" as="geometry"/>
+                </mxCell>
+<mxCell id="ot_workflow_activity.cv::part40" value="" style="html=1;whiteSpace=wrap;container=1;fillColor=#dae8fc;strokeColor=#6c8ebf;dashed=1;fillOpacity=20;strokeWidth=2;containerType=none;recursiveResize=0;movable=1;resizable=1;autosize=0;dropTarget=0" vertex="1" parent="__uml__ot_workflow_activity.cv">
+                  <mxGeometry x="-360.19206814041104" y="673.5826916698934" width="181" height="212" as="geometry"/>
+                </mxCell>
+                <mxCell id="ot_workflow_activity.cv::part40_label" value="de Datos" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;labelBackgroundColor=white;spacing=5" vertex="1" parent="__uml__ot_workflow_activity.cv">
+                  <mxGeometry x="-352.19206814041104" y="681.5826916698934" width="105" height="24" as="geometry"/>
+                </mxCell>
+<mxCell id="ot_workflow_activity.cv::part42" value="" style="html=1;whiteSpace=wrap;container=1;fillColor=#dae8fc;strokeColor=#6c8ebf;dashed=1;fillOpacity=20;strokeWidth=2;containerType=none;recursiveResize=0;movable=1;resizable=1;autosize=0;dropTarget=0" vertex="1" parent="__uml__ot_workflow_activity.cv">
+                  <mxGeometry x="-422.69206814041104" y="834.5826916698934" width="199" height="212" as="geometry"/>
+                </mxCell>
+                <mxCell id="ot_workflow_activity.cv::part42_label" value="de Negocio" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;labelBackgroundColor=white;spacing=5" vertex="1" parent="__uml__ot_workflow_activity.cv">
+                  <mxGeometry x="-414.69206814041104" y="842.5826916698934" width="123" height="24" as="geometry"/>
+                </mxCell>
+<mxCell id="ot_workflow_activity.cv::part45" value="" style="html=1;whiteSpace=wrap;container=1;fillColor=#dae8fc;strokeColor=#6c8ebf;dashed=1;fillOpacity=20;strokeWidth=2;containerType=none;recursiveResize=0;movable=1;resizable=1;autosize=0;dropTarget=0" vertex="1" parent="__uml__ot_workflow_activity.cv">
+                  <mxGeometry x="-328.19206814041104" y="1056.5826916698934" width="181" height="212" as="geometry"/>
+                </mxCell>
+                <mxCell id="ot_workflow_activity.cv::part45_label" value="de Datos" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;labelBackgroundColor=white;spacing=5" vertex="1" parent="__uml__ot_workflow_activity.cv">
+                  <mxGeometry x="-320.19206814041104" y="1064.5826916698934" width="105" height="24" as="geometry"/>
+                </mxCell>
+<mxCell id="__uml__base.cv" value="" style="html=1;whiteSpace=wrap;container=1;fillColor=#dae8fc;strokeColor=#6c8ebf;dashed=1;fillOpacity=20;strokeWidth=2;containerType=none;recursiveResize=0;movable=1;resizable=1;autosize=0;dropTarget=0" vertex="1" parent="1">
+                  <mxGeometry x="640" y="1358" width="1197" height="962" as="geometry"/>
+                </mxCell>
+                <mxCell id="__uml__base.cv_label" value="base.cv" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;labelBackgroundColor=white;spacing=5" vertex="1" parent="1">
+                  <mxGeometry x="648" y="1366" width="1121" height="24" as="geometry"/>
+                </mxCell>
+<mxCell id="__uml__ot_workflow_activity.cv" value="" style="html=1;whiteSpace=wrap;container=1;fillColor=#dae8fc;strokeColor=#6c8ebf;dashed=1;fillOpacity=20;strokeWidth=2;containerType=none;recursiveResize=0;movable=1;resizable=1;autosize=0;dropTarget=0" vertex="1" parent="1">
+                  <mxGeometry x="-442.69206814041104" y="2320.4173083301066" width="109" height="109" as="geometry"/>
+                </mxCell>
+                <mxCell id="__uml__ot_workflow_activity.cv_label" value="ot_workflow_activity.cv" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;labelBackgroundColor=white;spacing=5" vertex="1" parent="1">
+                  <mxGeometry x="-434.69206814041104" y="2328.4173083301066" width="33" height="24" as="geometry"/>
+                </mxCell>
+                <mxCell id="base.cv::web" value="Frontend Next.js" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5" vertex="1" parent="base.cv::pgf_system">
+                      <mxGeometry x="756.5" y="110" width="283" height="73" as="geometry"/>
+                    </mxCell>
+<mxCell id="base.cv::api" value="API Django" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5" vertex="1" parent="base.cv::pgf_system">
+                      <mxGeometry x="379" y="296" width="339" height="97" as="geometry"/>
+                    </mxCell>
+<mxCell id="base.cv::db" value="Base de Datos PostgreSQL" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5" vertex="1" parent="base.cv::pgf_system">
+                      <mxGeometry x="379" y="433" width="339" height="97" as="geometry"/>
+                    </mxCell>
+<mxCell id="base.cv::worker" value="Worker Celery" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5" vertex="1" parent="base.cv::pgf_system">
+                      <mxGeometry x="20" y="433" width="339" height="97" as="geometry"/>
+                    </mxCell>
+<mxCell id="base.cv::beat" value="Celery Beat" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5" vertex="1" parent="base.cv::pgf_system">
+                      <mxGeometry x="311.75" y="203" width="306" height="73" as="geometry"/>
+                    </mxCell>
+<mxCell id="base.cv::localstack" value="LocalStack" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5" vertex="1" parent="base.cv::pgf_system">
+                      <mxGeometry x="738" y="433" width="339" height="97" as="geometry"/>
+                    </mxCell>
+<mxCell id="base.cv::user" value="Usuario Final" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5" vertex="1" parent="__uml__base.cv">
+                      <mxGeometry x="797.25" y="60" width="297" height="97" as="geometry"/>
+                    </mxCell>
+<mxCell id="base.cv::cloudflare" value="Cloudflare" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5" vertex="1" parent="__uml__base.cv">
+                      <mxGeometry x="835.75" y="294" width="220" height="73" as="geometry"/>
+                    </mxCell>
+<mxCell id="base.cv::aws_s3" value="AWS S3" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5" vertex="1" parent="__uml__base.cv">
+                      <mxGeometry x="628.75" y="177" width="297" height="97" as="geometry"/>
+                    </mxCell>
+<mxCell id="base.cv::zap" value="OWASP ZAP" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5" vertex="1" parent="__uml__base.cv">
+                      <mxGeometry x="269.75" y="177" width="339" height="97" as="geometry"/>
+                    </mxCell>
+<mxCell id="ot_workflow_activity.cv::start1" value="start" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5" vertex="1" parent="__uml__ot_workflow_activity.cv">
+                      <mxGeometry x="279.5" y="60" width="49" height="41" as="geometry"/>
+                    </mxCell>
+<mxCell id="ot_workflow_activity.cv::a3" value="Usuario inicia creación de OT" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5" vertex="1" parent="ot_workflow_activity.cv::part2">
+                      <mxGeometry x="73.5" y="110" width="218" height="41" as="geometry"/>
+                    </mxCell>
+<mxCell id="ot_workflow_activity.cv::a4" value="Frontend (Next.js) muestra formulario de OT" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5" vertex="1" parent="ot_workflow_activity.cv::part2">
+                      <mxGeometry x="20" y="171" width="325" height="41" as="geometry"/>
+                    </mxCell>
+<mxCell id="ot_workflow_activity.cv::a5" value="Usuario envía datos de OT" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5" vertex="1" parent="ot_workflow_activity.cv::part2">
+                      <mxGeometry x="83" y="232" width="199" height="41" as="geometry"/>
+                    </mxCell>
+<mxCell id="ot_workflow_activity.cv::a7" value="API (Django) recibe solicitud de creación de OT" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5" vertex="1" parent="ot_workflow_activity.cv::part6">
+                      <mxGeometry x="20" y="110" width="343" height="41" as="geometry"/>
+                    </mxCell>
+<mxCell id="ot_workflow_activity.cv::a8" value="API valida datos de OT" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5" vertex="1" parent="ot_workflow_activity.cv::part6">
+                      <mxGeometry x="105" y="171" width="173" height="41" as="geometry"/>
+                    </mxCell>
+<mxCell id="ot_workflow_activity.cv::a10" value="API guarda nueva OT en Base de Datos (PostgreSQL)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5" vertex="1" parent="ot_workflow_activity.cv::part9">
+                      <mxGeometry x="20" y="110" width="381" height="41" as="geometry"/>
+                    </mxCell>
+<mxCell id="ot_workflow_activity.cv::a12" value="API notifica a Worker (Celery) para procesamiento inicial (ej. asignación)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5" vertex="1" parent="ot_workflow_activity.cv::part11">
+                      <mxGeometry x="20" y="110" width="516" height="41" as="geometry"/>
+                    </mxCell>
+<mxCell id="ot_workflow_activity.cv::fork14" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5" vertex="1" parent="ot_workflow_activity.cv::forkg13">
+                      <mxGeometry x="207.5" y="110" width="17" height="21" as="geometry"/>
+                    </mxCell>
+<mxCell id="ot_workflow_activity.cv::join15" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5" vertex="1" parent="ot_workflow_activity.cv::forkg13">
+                      <mxGeometry x="207.5" y="373" width="17" height="21" as="geometry"/>
+                    </mxCell>
+<mxCell id="ot_workflow_activity.cv::a16" value="Worker procesa tarea de asignación de OT" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5" vertex="1" parent="ot_workflow_activity.cv::forkg13">
+                      <mxGeometry x="61" y="151" width="310" height="41" as="geometry"/>
+                    </mxCell>
+<mxCell id="ot_workflow_activity.cv::a18" value="Worker actualiza estado de OT en Base de Datos" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5" vertex="1" parent="ot_workflow_activity.cv::part17">
+                      <mxGeometry x="20" y="110" width="352" height="41" as="geometry"/>
+                    </mxCell>
+<mxCell id="ot_workflow_activity.cv::a19" value="Beat (Celery Beat) programa verificación periódica de OTs" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5" vertex="1" parent="ot_workflow_activity.cv::part11">
+                      <mxGeometry x="70" y="575" width="416" height="41" as="geometry"/>
+                    </mxCell>
+<mxCell id="ot_workflow_activity.cv::a21" value="Beat consulta Base de Datos para OTs pendientes/vencidas" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5" vertex="1" parent="ot_workflow_activity.cv::part20">
+                      <mxGeometry x="20" y="110" width="424" height="41" as="geometry"/>
+                    </mxCell>
+<mxCell id="ot_workflow_activity.cv::end22" value="end" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5" vertex="1" parent="ot_workflow_activity.cv::part11">
+                      <mxGeometry x="256" y="797" width="44" height="41" as="geometry"/>
+                    </mxCell>
+<mxCell id="ot_workflow_activity.cv::a24" value="Usuario consulta estado de OT" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5" vertex="1" parent="ot_workflow_activity.cv::part23">
+                      <mxGeometry x="28.047647223724084" y="886.5979570893746" width="229" height="41" as="geometry"/>
+                    </mxCell>
+<mxCell id="ot_workflow_activity.cv::a26" value="API (Django) recibe solicitud de consulta de OT" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5" vertex="1" parent="ot_workflow_activity.cv::part25">
+                      <mxGeometry x="20" y="110" width="343" height="41" as="geometry"/>
+                    </mxCell>
+<mxCell id="ot_workflow_activity.cv::a28" value="API recupera datos de OT de Base de Datos" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5" vertex="1" parent="ot_workflow_activity.cv::part27">
+                      <mxGeometry x="20" y="110" width="317" height="41" as="geometry"/>
+                    </mxCell>
+<mxCell id="ot_workflow_activity.cv::a30" value="API procesa datos y los envía al Frontend" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5" vertex="1" parent="ot_workflow_activity.cv::part29">
+                      <mxGeometry x="20" y="110" width="301" height="41" as="geometry"/>
+                    </mxCell>
+<mxCell id="ot_workflow_activity.cv::a32" value="Frontend muestra estado de OT al usuario" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5" vertex="1" parent="ot_workflow_activity.cv::part31">
+                      <mxGeometry x="20" y="110" width="309" height="41" as="geometry"/>
+                    </mxCell>
+<mxCell id="ot_workflow_activity.cv::a34" value="Usuario inicia cierre de OT" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5" vertex="1" parent="ot_workflow_activity.cv::part33">
+                      <mxGeometry x="93" y="110" width="198" height="41" as="geometry"/>
+                    </mxCell>
+<mxCell id="ot_workflow_activity.cv::a35" value="Frontend (Next.js) muestra formulario de cierre" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5" vertex="1" parent="ot_workflow_activity.cv::part33">
+                      <mxGeometry x="20" y="171" width="344" height="41" as="geometry"/>
+                    </mxCell>
+<mxCell id="ot_workflow_activity.cv::a36" value="Usuario envía datos de cierre de OT" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5" vertex="1" parent="ot_workflow_activity.cv::part33">
+                      <mxGeometry x="60.5" y="232" width="263" height="41" as="geometry"/>
+                    </mxCell>
+<mxCell id="ot_workflow_activity.cv::a38" value="API (Django) recibe solicitud de cierre de OT" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5" vertex="1" parent="ot_workflow_activity.cv::part37">
+                      <mxGeometry x="20" y="110" width="324" height="41" as="geometry"/>
+                    </mxCell>
+<mxCell id="ot_workflow_activity.cv::a39" value="API valida datos de cierre de OT" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5" vertex="1" parent="ot_workflow_activity.cv::part37">
+                      <mxGeometry x="63.5" y="171" width="237" height="41" as="geometry"/>
+                    </mxCell>
+<mxCell id="ot_workflow_activity.cv::a41" value="API actualiza estado de OT a &apos;Cerrada&apos; en Base de Datos" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5" vertex="1" parent="ot_workflow_activity.cv::part40">
+                      <mxGeometry x="20" y="110" width="403" height="41" as="geometry"/>
+                    </mxCell>
+<mxCell id="ot_workflow_activity.cv::a43" value="API notifica a Worker (Celery) para tareas post-cierre (ej. generar informe)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5" vertex="1" parent="ot_workflow_activity.cv::part42">
+                      <mxGeometry x="20" y="110" width="528" height="41" as="geometry"/>
+                    </mxCell>
+<mxCell id="ot_workflow_activity.cv::a44" value="Worker genera informe de cierre de OT" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5" vertex="1" parent="ot_workflow_activity.cv::part42">
+                      <mxGeometry x="139.5" y="171" width="289" height="41" as="geometry"/>
+                    </mxCell>
+<mxCell id="ot_workflow_activity.cv::a46" value="Worker guarda informe en AWS S3/LocalStack" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5" vertex="1" parent="ot_workflow_activity.cv::part45">
+                      <mxGeometry x="20" y="110" width="339" height="41" as="geometry"/>
+                    </mxCell>
+<mxCell id="ot_workflow_activity.cv::end47" value="end" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5" vertex="1" parent="__uml__ot_workflow_activity.cv">
+                      <mxGeometry x="282" y="3573" width="44" height="41" as="geometry"/>
+                    </mxCell>
+                <mxCell id="edge-base.cv::e1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#808080;strokeWidth=2;jumpStyle=arc;jumpSize=10;spacing=15;labelBackgroundColor=white;labelBorderColor=none" edge="1" parent="1" source="base.cv::user" target="base.cv::cloudflare">
+                    <mxGeometry relative="1" as="geometry"/>
+                  </mxCell>
+                  <mxCell id="edge-base.cv::e1_label" value="Accede a través de" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="edge-base.cv::e1">
+                    <mxGeometry x="-0.2" y="10" relative="1" as="geometry">
+                      <mxPoint as="offset"/>
+                    </mxGeometry>
+                  </mxCell>
+<mxCell id="edge-base.cv::e2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#808080;strokeWidth=2;jumpStyle=arc;jumpSize=10;spacing=15;labelBackgroundColor=white;labelBorderColor=none" edge="1" parent="1" source="base.cv::cloudflare" target="base.cv::web">
+                    <mxGeometry relative="1" as="geometry"/>
+                  </mxCell>
+                  <mxCell id="edge-base.cv::e2_label" value="Enruta el tráfico a" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="edge-base.cv::e2">
+                    <mxGeometry x="-0.2" y="10" relative="1" as="geometry">
+                      <mxPoint as="offset"/>
+                    </mxGeometry>
+                  </mxCell>
+<mxCell id="edge-base.cv::e3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#808080;strokeWidth=2;jumpStyle=arc;jumpSize=10;spacing=15;labelBackgroundColor=white;labelBorderColor=none" edge="1" parent="1" source="base.cv::web" target="base.cv::api">
+                    <mxGeometry relative="1" as="geometry"/>
+                  </mxCell>
+                  <mxCell id="edge-base.cv::e3_label" value="Realiza llamadas a la API" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="edge-base.cv::e3">
+                    <mxGeometry x="-0.2" y="10" relative="1" as="geometry">
+                      <mxPoint as="offset"/>
+                    </mxGeometry>
+                  </mxCell>
+<mxCell id="edge-base.cv::e4" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#808080;strokeWidth=2;jumpStyle=arc;jumpSize=10;spacing=15;labelBackgroundColor=white;labelBorderColor=none" edge="1" parent="1" source="base.cv::api" target="base.cv::db">
+                    <mxGeometry relative="1" as="geometry"/>
+                  </mxCell>
+                  <mxCell id="edge-base.cv::e4_label" value="Lee y escribe en" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="edge-base.cv::e4">
+                    <mxGeometry x="-0.2" y="10" relative="1" as="geometry">
+                      <mxPoint as="offset"/>
+                    </mxGeometry>
+                  </mxCell>
+<mxCell id="edge-base.cv::e5" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#808080;strokeWidth=2;jumpStyle=arc;jumpSize=10;spacing=15;labelBackgroundColor=white;labelBorderColor=none" edge="1" parent="1" source="base.cv::api" target="base.cv::worker">
+                    <mxGeometry relative="1" as="geometry"/>
+                  </mxCell>
+                  <mxCell id="edge-base.cv::e5_label" value="Envía tareas a" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="edge-base.cv::e5">
+                    <mxGeometry x="-0.2" y="10" relative="1" as="geometry">
+                      <mxPoint as="offset"/>
+                    </mxGeometry>
+                  </mxCell>
+<mxCell id="edge-base.cv::e6" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#808080;strokeWidth=2;jumpStyle=arc;jumpSize=10;spacing=15;labelBackgroundColor=white;labelBorderColor=none" edge="1" parent="1" source="base.cv::api" target="base.cv::localstack">
+                    <mxGeometry relative="1" as="geometry"/>
+                  </mxCell>
+                  <mxCell id="edge-base.cv::e6_label" value="Almacena y recupera archivos de" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="edge-base.cv::e6">
+                    <mxGeometry x="-0.2" y="10" relative="1" as="geometry">
+                      <mxPoint as="offset"/>
+                    </mxGeometry>
+                  </mxCell>
+<mxCell id="edge-base.cv::e7" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#808080;strokeWidth=2;jumpStyle=arc;jumpSize=10;spacing=15;labelBackgroundColor=white;labelBorderColor=none" edge="1" parent="1" source="base.cv::web" target="base.cv::localstack">
+                    <mxGeometry relative="1" as="geometry"/>
+                  </mxCell>
+                  <mxCell id="edge-base.cv::e7_label" value="Accede a archivos de" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="edge-base.cv::e7">
+                    <mxGeometry x="-0.2" y="10" relative="1" as="geometry">
+                      <mxPoint as="offset"/>
+                    </mxGeometry>
+                  </mxCell>
+<mxCell id="edge-base.cv::e8" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#808080;strokeWidth=2;jumpStyle=arc;jumpSize=10;spacing=15;labelBackgroundColor=white;labelBorderColor=none" edge="1" parent="1" source="base.cv::zap" target="base.cv::web">
+                    <mxGeometry relative="1" as="geometry"/>
+                  </mxCell>
+                  <mxCell id="edge-base.cv::e8_label" value="Escanea vulnerabilidades en" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="edge-base.cv::e8">
+                    <mxGeometry x="-0.2" y="10" relative="1" as="geometry">
+                      <mxPoint as="offset"/>
+                    </mxGeometry>
+                  </mxCell>
+<mxCell id="edge-base.cv::e9" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#808080;strokeWidth=2;jumpStyle=arc;jumpSize=10;spacing=15;labelBackgroundColor=white;labelBorderColor=none" edge="1" parent="1" source="base.cv::zap" target="base.cv::api">
+                    <mxGeometry relative="1" as="geometry"/>
+                  </mxCell>
+                  <mxCell id="edge-base.cv::e9_label" value="Escanea vulnerabilidades en" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="edge-base.cv::e9">
+                    <mxGeometry x="-0.2" y="10" relative="1" as="geometry">
+                      <mxPoint as="offset"/>
+                    </mxGeometry>
+                  </mxCell>
+<mxCell id="edge-ot_workflow_activity.cv::e1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#808080;strokeWidth=2;jumpStyle=arc;jumpSize=10;spacing=15;labelBackgroundColor=white;labelBorderColor=none" edge="1" parent="1" source="ot_workflow_activity.cv::a3" target="ot_workflow_activity.cv::a4">
+                    <mxGeometry relative="1" as="geometry"/>
+                  </mxCell>
+<mxCell id="edge-ot_workflow_activity.cv::e2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#808080;strokeWidth=2;jumpStyle=arc;jumpSize=10;spacing=15;labelBackgroundColor=white;labelBorderColor=none" edge="1" parent="1" source="ot_workflow_activity.cv::a4" target="ot_workflow_activity.cv::a5">
+                    <mxGeometry relative="1" as="geometry"/>
+                  </mxCell>
+<mxCell id="edge-ot_workflow_activity.cv::e3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#808080;strokeWidth=2;jumpStyle=arc;jumpSize=10;spacing=15;labelBackgroundColor=white;labelBorderColor=none" edge="1" parent="1" source="ot_workflow_activity.cv::start1" target="ot_workflow_activity.cv::a3">
+                    <mxGeometry relative="1" as="geometry"/>
+                  </mxCell>
+<mxCell id="edge-ot_workflow_activity.cv::e4" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#808080;strokeWidth=2;jumpStyle=arc;jumpSize=10;spacing=15;labelBackgroundColor=white;labelBorderColor=none" edge="1" parent="1" source="ot_workflow_activity.cv::a7" target="ot_workflow_activity.cv::a8">
+                    <mxGeometry relative="1" as="geometry"/>
+                  </mxCell>
+<mxCell id="edge-ot_workflow_activity.cv::e5" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#808080;strokeWidth=2;jumpStyle=arc;jumpSize=10;spacing=15;labelBackgroundColor=white;labelBorderColor=none" edge="1" parent="1" source="ot_workflow_activity.cv::a5" target="ot_workflow_activity.cv::a7">
+                    <mxGeometry relative="1" as="geometry"/>
+                  </mxCell>
+<mxCell id="edge-ot_workflow_activity.cv::e6" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#808080;strokeWidth=2;jumpStyle=arc;jumpSize=10;spacing=15;labelBackgroundColor=white;labelBorderColor=none" edge="1" parent="1" source="ot_workflow_activity.cv::a8" target="ot_workflow_activity.cv::a10">
+                    <mxGeometry relative="1" as="geometry"/>
+                  </mxCell>
+<mxCell id="edge-ot_workflow_activity.cv::e7" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#808080;strokeWidth=2;jumpStyle=arc;jumpSize=10;spacing=15;labelBackgroundColor=white;labelBorderColor=none" edge="1" parent="1" source="ot_workflow_activity.cv::a16" target="ot_workflow_activity.cv::a18">
+                    <mxGeometry relative="1" as="geometry"/>
+                  </mxCell>
+<mxCell id="edge-ot_workflow_activity.cv::e8" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#808080;strokeWidth=2;jumpStyle=arc;jumpSize=10;spacing=15;labelBackgroundColor=white;labelBorderColor=none" edge="1" parent="1" source="ot_workflow_activity.cv::fork14" target="ot_workflow_activity.cv::a16">
+                    <mxGeometry relative="1" as="geometry"/>
+                  </mxCell>
+<mxCell id="edge-ot_workflow_activity.cv::e9" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#808080;strokeWidth=2;jumpStyle=arc;jumpSize=10;spacing=15;labelBackgroundColor=white;labelBorderColor=none" edge="1" parent="1" source="ot_workflow_activity.cv::a18" target="ot_workflow_activity.cv::join15">
+                    <mxGeometry relative="1" as="geometry"/>
+                  </mxCell>
+<mxCell id="edge-ot_workflow_activity.cv::e10" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#808080;strokeWidth=2;jumpStyle=arc;jumpSize=10;spacing=15;labelBackgroundColor=white;labelBorderColor=none" edge="1" parent="1" source="ot_workflow_activity.cv::a12" target="ot_workflow_activity.cv::fork14">
+                    <mxGeometry relative="1" as="geometry"/>
+                  </mxCell>
+<mxCell id="edge-ot_workflow_activity.cv::e11" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#808080;strokeWidth=2;jumpStyle=arc;jumpSize=10;spacing=15;labelBackgroundColor=white;labelBorderColor=none" edge="1" parent="1" source="ot_workflow_activity.cv::join15" target="ot_workflow_activity.cv::a19">
+                    <mxGeometry relative="1" as="geometry"/>
+                  </mxCell>
+<mxCell id="edge-ot_workflow_activity.cv::e12" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#808080;strokeWidth=2;jumpStyle=arc;jumpSize=10;spacing=15;labelBackgroundColor=white;labelBorderColor=none" edge="1" parent="1" source="ot_workflow_activity.cv::a19" target="ot_workflow_activity.cv::a21">
+                    <mxGeometry relative="1" as="geometry"/>
+                  </mxCell>
+<mxCell id="edge-ot_workflow_activity.cv::e13" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#808080;strokeWidth=2;jumpStyle=arc;jumpSize=10;spacing=15;labelBackgroundColor=white;labelBorderColor=none" edge="1" parent="1" source="ot_workflow_activity.cv::a21" target="ot_workflow_activity.cv::end22">
+                    <mxGeometry relative="1" as="geometry"/>
+                  </mxCell>
+<mxCell id="edge-ot_workflow_activity.cv::e14" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#808080;strokeWidth=2;jumpStyle=arc;jumpSize=10;spacing=15;labelBackgroundColor=white;labelBorderColor=none" edge="1" parent="1" source="ot_workflow_activity.cv::a10" target="ot_workflow_activity.cv::a12">
+                    <mxGeometry relative="1" as="geometry"/>
+                  </mxCell>
+<mxCell id="edge-ot_workflow_activity.cv::e15" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#808080;strokeWidth=2;jumpStyle=arc;jumpSize=10;spacing=15;labelBackgroundColor=white;labelBorderColor=none" edge="1" parent="1" source="ot_workflow_activity.cv::end22" target="ot_workflow_activity.cv::a24">
+                    <mxGeometry relative="1" as="geometry"/>
+                  </mxCell>
+<mxCell id="edge-ot_workflow_activity.cv::e16" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#808080;strokeWidth=2;jumpStyle=arc;jumpSize=10;spacing=15;labelBackgroundColor=white;labelBorderColor=none" edge="1" parent="1" source="ot_workflow_activity.cv::a24" target="ot_workflow_activity.cv::a26">
+                    <mxGeometry relative="1" as="geometry"/>
+                  </mxCell>
+<mxCell id="edge-ot_workflow_activity.cv::e17" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#808080;strokeWidth=2;jumpStyle=arc;jumpSize=10;spacing=15;labelBackgroundColor=white;labelBorderColor=none" edge="1" parent="1" source="ot_workflow_activity.cv::a26" target="ot_workflow_activity.cv::a28">
+                    <mxGeometry relative="1" as="geometry"/>
+                  </mxCell>
+<mxCell id="edge-ot_workflow_activity.cv::e18" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#808080;strokeWidth=2;jumpStyle=arc;jumpSize=10;spacing=15;labelBackgroundColor=white;labelBorderColor=none" edge="1" parent="1" source="ot_workflow_activity.cv::a28" target="ot_workflow_activity.cv::a30">
+                    <mxGeometry relative="1" as="geometry"/>
+                  </mxCell>
+<mxCell id="edge-ot_workflow_activity.cv::e19" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#808080;strokeWidth=2;jumpStyle=arc;jumpSize=10;spacing=15;labelBackgroundColor=white;labelBorderColor=none" edge="1" parent="1" source="ot_workflow_activity.cv::a30" target="ot_workflow_activity.cv::a32">
+                    <mxGeometry relative="1" as="geometry"/>
+                  </mxCell>
+<mxCell id="edge-ot_workflow_activity.cv::e20" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#808080;strokeWidth=2;jumpStyle=arc;jumpSize=10;spacing=15;labelBackgroundColor=white;labelBorderColor=none" edge="1" parent="1" source="ot_workflow_activity.cv::a34" target="ot_workflow_activity.cv::a35">
+                    <mxGeometry relative="1" as="geometry"/>
+                  </mxCell>
+<mxCell id="edge-ot_workflow_activity.cv::e21" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#808080;strokeWidth=2;jumpStyle=arc;jumpSize=10;spacing=15;labelBackgroundColor=white;labelBorderColor=none" edge="1" parent="1" source="ot_workflow_activity.cv::a35" target="ot_workflow_activity.cv::a36">
+                    <mxGeometry relative="1" as="geometry"/>
+                  </mxCell>
+<mxCell id="edge-ot_workflow_activity.cv::e22" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#808080;strokeWidth=2;jumpStyle=arc;jumpSize=10;spacing=15;labelBackgroundColor=white;labelBorderColor=none" edge="1" parent="1" source="ot_workflow_activity.cv::a32" target="ot_workflow_activity.cv::a34">
+                    <mxGeometry relative="1" as="geometry"/>
+                  </mxCell>
+<mxCell id="edge-ot_workflow_activity.cv::e23" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#808080;strokeWidth=2;jumpStyle=arc;jumpSize=10;spacing=15;labelBackgroundColor=white;labelBorderColor=none" edge="1" parent="1" source="ot_workflow_activity.cv::a38" target="ot_workflow_activity.cv::a39">
+                    <mxGeometry relative="1" as="geometry"/>
+                  </mxCell>
+<mxCell id="edge-ot_workflow_activity.cv::e24" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#808080;strokeWidth=2;jumpStyle=arc;jumpSize=10;spacing=15;labelBackgroundColor=white;labelBorderColor=none" edge="1" parent="1" source="ot_workflow_activity.cv::a36" target="ot_workflow_activity.cv::a38">
+                    <mxGeometry relative="1" as="geometry"/>
+                  </mxCell>
+<mxCell id="edge-ot_workflow_activity.cv::e25" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#808080;strokeWidth=2;jumpStyle=arc;jumpSize=10;spacing=15;labelBackgroundColor=white;labelBorderColor=none" edge="1" parent="1" source="ot_workflow_activity.cv::a39" target="ot_workflow_activity.cv::a41">
+                    <mxGeometry relative="1" as="geometry"/>
+                  </mxCell>
+<mxCell id="edge-ot_workflow_activity.cv::e26" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#808080;strokeWidth=2;jumpStyle=arc;jumpSize=10;spacing=15;labelBackgroundColor=white;labelBorderColor=none" edge="1" parent="1" source="ot_workflow_activity.cv::a43" target="ot_workflow_activity.cv::a44">
+                    <mxGeometry relative="1" as="geometry"/>
+                  </mxCell>
+<mxCell id="edge-ot_workflow_activity.cv::e27" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#808080;strokeWidth=2;jumpStyle=arc;jumpSize=10;spacing=15;labelBackgroundColor=white;labelBorderColor=none" edge="1" parent="1" source="ot_workflow_activity.cv::a41" target="ot_workflow_activity.cv::a43">
+                    <mxGeometry relative="1" as="geometry"/>
+                  </mxCell>
+<mxCell id="edge-ot_workflow_activity.cv::e28" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#808080;strokeWidth=2;jumpStyle=arc;jumpSize=10;spacing=15;labelBackgroundColor=white;labelBorderColor=none" edge="1" parent="1" source="ot_workflow_activity.cv::a44" target="ot_workflow_activity.cv::a46">
+                    <mxGeometry relative="1" as="geometry"/>
+                  </mxCell>
+<mxCell id="edge-ot_workflow_activity.cv::e29" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#808080;strokeWidth=2;jumpStyle=arc;jumpSize=10;spacing=15;labelBackgroundColor=white;labelBorderColor=none" edge="1" parent="1" source="ot_workflow_activity.cv::a46" target="ot_workflow_activity.cv::end47">
+                    <mxGeometry relative="1" as="geometry"/>
+                  </mxCell>
+              </root>
+            </mxGraphModel>
+          </diagram>
+        </mxfile>

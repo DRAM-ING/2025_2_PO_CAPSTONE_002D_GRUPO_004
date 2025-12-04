@@ -1,0 +1,20 @@
+# Configuración para Quick Tunnel (sin dominio)
+# Este archivo es solo de referencia
+# Para Quick Tunnel, usa directamente: cloudflared tunnel --url http://localhost:PUERTO
+
+# Si quieres usar un túnel permanente con URLs estables,
+# usa este archivo y reemplaza YOUR_TUNNEL_ID con tu Tunnel ID
+
+tunnel: YOUR_TUNNEL_ID
+credentials-file: C:\Users\luxo_\.cloudflared\YOUR_TUNNEL_ID.json
+
+ingress:
+  # Frontend (Next.js) - Sin hostname, Cloudflare asignará URLs aleatorias
+  - service: http://localhost:3000
+  
+  # API (Django) - Sin hostname, Cloudflare asignará URLs aleatorias
+  - service: http://localhost:8000
+  
+  # Catch-all rule (debe ir al final)
+  - service: http_status:404
+

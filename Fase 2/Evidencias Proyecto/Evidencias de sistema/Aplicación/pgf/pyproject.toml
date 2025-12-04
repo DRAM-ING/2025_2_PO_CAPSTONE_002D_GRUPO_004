@@ -1,0 +1,70 @@
+[project]
+name = "pgf"
+version = "0.1.0"
+description = "Proyecto Gestion de Flota"
+authors = [
+    {name = "Kuiper",email = "diaz526.ld@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "django (>=5.2.7,<6.0.0)",
+    "djangorestframework (>=3.16.1,<4.0.0)",
+    "drf-spectacular (>=0.28.0,<0.29.0)",
+    "djangorestframework-simplejwt (>=5.5.1,<6.0.0)",
+    "django-storages (>=1.14.6,<2.0.0)",
+    "boto3 (>=1.40.52,<2.0.0)",
+    "celery (>=5.5.3,<6.0.0)",
+    "redis (>=6.4.0,<7.0.0)",
+    "psycopg2-binary (>=2.9.11,<3.0.0)",
+    "python-dotenv (>=1.1.1,<2.0.0)",
+    "dj-database-url (>=3.0.1,<4.0.0)",
+    "gunicorn (>=23.0.0,<24.0.0)",
+    "uvicorn (>=0.37.0,<0.38.0)",
+    "django-filter (>=25.2,<26.0)",
+    "django-debug-toolbar (>=6.0.0,<7.0.0)",
+    "django-cors-headers (>=4.9.0,<5.0.0)",
+    "reportlab (>=4.4.4,<5.0.0)",
+    "matplotlib (>=3.9.0,<4.0.0)",
+    "django-redis (>=5.4.0,<6.0.0)",
+    "channels (>=4.1.0,<5.0.0)",
+    "channels-redis (>=4.2.0,<5.0.0)",
+    "daphne (>=4.1.0,<5.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.group.dev.dependencies]
+pytest = ">=8.4.2,<9.0.0"
+pytest-django = ">=4.11.1,<5.0.0"
+pytest-cov = ">=6.0.0,<7.0.0"
+pytest-html = ">=4.1.1,<5.0.0"
+factory-boy = ">=3.3.3,<4.0.0"
+faker = ">=33.0.0,<34.0.0"
+[tool.poetry.dependencies]
+python = ">=3.13,<4"
+django = ">=5.2.7,<6.0.0"
+djangorestframework = ">=3.16.1,<4.0.0"
+drf-spectacular = ">=0.28.0,<0.29.0"
+djangorestframework-simplejwt = ">=5.5.1,<6.0.0"
+django-storages = ">=1.14.6,<2.0.0"
+boto3 = ">=1.40.52,<2.0.0"
+celery = ">=5.5.3,<6.0.0"
+redis = ">=6.4.0,<7.0.0"
+psycopg2-binary = ">=2.9.11,<3.0.0"
+python-dotenv = ">=1.1.1,<2.0.0"
+dj-database-url = ">=3.0.1,<4.0.0"
+gunicorn = ">=23.0.0,<24.0.0"
+uvicorn = ">=0.37.0,<0.38.0"
+django-filter = ">=25.2,<26.0"
+django-debug-toolbar = ">=6.0.0,<7.0.0"
+django-cors-headers = ">=4.9.0,<5.0.0"
+reportlab = ">=4.4.4,<5.0.0"
+matplotlib = ">=3.9.0,<4.0.0"
+django-redis = ">=5.4.0,<6.0.0"
+channels = ">=4.1.0,<5.0.0"
+channels-redis = ">=4.2.0,<5.0.0"
+daphne = ">=4.1.0,<5.0.0"

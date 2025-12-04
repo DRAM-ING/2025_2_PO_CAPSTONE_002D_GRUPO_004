@@ -1,0 +1,567 @@
+// ============================================================================
+// MODELO ENTIDAD-RELACIÓN (MER) - PLATAFORMA DE GESTIÓN DE FLOTA PEPSICO
+// ============================================================================
+// Formato: DBML (Database Markup Language)
+// Visualizar en: https://dbdiagram.io
+// ============================================================================
+
+// ============================================================================
+// MÓDULO: USUARIOS Y AUTENTICACIÓN
+// ============================================================================
+
+Table users_user {
+  id bigserial [pk]
+  password varchar(128) [not null]
+  last_login timestamptz
+  is_superuser boolean [default: false]
+  username varchar(150) [unique, not null]
+  first_name varchar(150)
+  last_name varchar(150)
+  email varchar(254) [unique, not null]
+  is_staff boolean [default: false]
+  is_active boolean [default: true]
+  date_joined timestamptz [default: `CURRENT_TIMESTAMP`]
+  rol varchar(20) [default: 'ADMIN']
+  rut varchar(12) [unique]
+  is_permanent boolean [default: false]
+  
+  Note: 'Usuario principal del sistema. Extiende AbstractUser de Django.'
+}
+
+Table users_profile {
+  id bigserial [pk]
+  user_id bigint [unique, not null, ref: > users_user.id]
+  first_name varchar(100)
+  last_name varchar(100)
+  phone_number varchar(32)
+  notificaciones_email boolean [default: true]
+  notificaciones_sonido boolean [default: true]
+  notificaciones_push boolean [default: false]
+  
+  Note: 'Perfil extendido del usuario con preferencias de notificación.'
+}
+
+Table users_passwordresettoken {
+  id uuid [pk, default: `gen_random_uuid()`]
+  user_id bigint [not null, ref: > users_user.id]
+  token varchar(64) [unique, not null]
+  created_at timestamptz [default: `CURRENT_TIMESTAMP`]
+  expires_at timestamptz [not null]
+  used boolean [default: false]
+  
+  Note: 'Tokens para recuperación de contraseña. Expiran en 24 horas.'
+}
+
+// ============================================================================
+// MÓDULO: VEHÍCULOS
+// ============================================================================
+
+Table vehicles_vehiculo {
+  id uuid [pk, default: `gen_random_uuid()`]
+  patente varchar(32) [unique, not null]
+  tipo varchar(20)
+  categoria varchar(20)
+  marca varchar(64)
+  modelo varchar(64)
+  anio integer
+  vin varchar(64)
+  estado varchar(32) [default: 'ACTIVO']
+  zona varchar(100)
+  sucursal varchar(100)
+  site varchar(100)
+  supervisor_id bigint [ref: > users_user.id]
+  estado_operativo varchar(30) [default: 'OPERATIVO']
+  cumplimiento varchar(20) [default: 'EN_POLITICA']
+  tct boolean [default: false]
+  tct_fecha_inicio timestamptz
+  tct_dias integer [default: 0]
+  ceco varchar(50)
+  equipo_sap varchar(50)
+  ultima_revision date
+  proxima_revision date
+  kilometraje_actual integer
+  km_mensual_promedio integer
+  ultimo_movimiento timestamptz
+  created_at timestamptz [default: `CURRENT_TIMESTAMP`]
+  updated_at timestamptz [default: `CURRENT_TIMESTAMP`]
+  
+  Note: 'Vehículo de la flota. Entidad central del sistema.'
+}
+
+Table vehicles_ingresovehiculo {
+  id uuid [pk, default: `gen_random_uuid()`]
+  vehiculo_id uuid [not null, ref: > vehicles_vehiculo.id]
+  guardia_id bigint [not null, ref: > users_user.id]
+  fecha_ingreso timestamptz [default: `CURRENT_TIMESTAMP`]
+  fecha_salida timestamptz
+  guardia_salida_id bigint [ref: > users_user.id]
+  observaciones text
+  observaciones_salida text
+  kilometraje integer
+  kilometraje_salida integer
+  qr_code varchar(255)
+  salio boolean [default: false]
+  
+  Note: 'Registro de ingreso de vehículo al taller.'
+}
+
+Table vehicles_evidenciaingreso {
+  id uuid [pk, default: `gen_random_uuid()`]
+  ingreso_id uuid [not null, ref: > vehicles_ingresovehiculo.id]
+  url varchar(200) [not null]
+  tipo varchar(20) [default: 'FOTO_INGRESO']
+  descripcion text
+  subido_en timestamptz [default: `CURRENT_TIMESTAMP`]
+  
+  Note: 'Evidencias fotográficas del ingreso de vehículo.'
+}
+
+Table vehicles_historialvehiculo {
+  id uuid [pk, default: `gen_random_uuid()`]
+  vehiculo_id uuid [not null, ref: > vehicles_vehiculo.id]
+  ot_id uuid [ref: > workorders_ordentrabajo.id]
+  tipo_evento varchar(30) [default: 'OTRO']
+  fecha_ingreso timestamptz
+  fecha_salida timestamptz
+  tiempo_permanencia decimal(10,2)
+  descripcion text
+  falla varchar(200)
+  supervisor_id bigint [ref: > users_user.id]
+  site varchar(100)
+  estado_antes varchar(30)
+  estado_despues varchar(30)
+  backup_utilizado_id uuid [ref: > vehicles_backupvehiculo.id]
+  creado_en timestamptz [default: `CURRENT_TIMESTAMP`]
+  
+  Note: 'Historial completo de eventos del vehículo.'
+}
+
+Table vehicles_backupvehiculo {
+  id uuid [pk, default: `gen_random_uuid()`]
+  vehiculo_principal_id uuid [not null, ref: > vehicles_vehiculo.id]
+  vehiculo_backup_id uuid [not null, ref: > vehicles_vehiculo.id]
+  ot_id uuid [ref: > workorders_ordentrabajo.id]
+  fecha_inicio timestamptz [not null]
+  fecha_devolucion timestamptz
+  duracion_dias decimal(10,2)
+  motivo text [not null]
+  site varchar(100)
+  supervisor_id bigint [ref: > users_user.id]
+  estado varchar(20) [default: 'ACTIVO']
+  observaciones text
+  creado_en timestamptz [default: `CURRENT_TIMESTAMP`]
+  actualizado_en timestamptz [default: `CURRENT_TIMESTAMP`]
+  
+  Note: 'Asignación de vehículo backup cuando el principal está en taller.'
+}
+
+// ============================================================================
+// MÓDULO: CHOFERES
+// ============================================================================
+
+Table drivers_chofer {
+  id uuid [pk, default: `gen_random_uuid()`]
+  nombre_completo varchar(255) [not null]
+  rut varchar(12) [unique, not null]
+  telefono varchar(20)
+  email varchar(254)
+  zona varchar(100)
+  sucursal varchar(100)
+  vehiculo_asignado_id uuid [ref: > vehicles_vehiculo.id]
+  km_mensual_promedio integer
+  activo boolean [default: true]
+  fecha_ingreso date
+  observaciones text
+  created_at timestamptz [default: `CURRENT_TIMESTAMP`]
+  updated_at timestamptz [default: `CURRENT_TIMESTAMP`]
+  
+  Note: 'Chofer asignado a vehículos.'
+}
+
+Table drivers_historialasignacionvehiculo {
+  id uuid [pk, default: `gen_random_uuid()`]
+  chofer_id uuid [not null, ref: > drivers_chofer.id]
+  vehiculo_id uuid [not null, ref: > vehicles_vehiculo.id]
+  fecha_asignacion timestamptz [default: `CURRENT_TIMESTAMP`]
+  fecha_fin timestamptz
+  motivo_fin text
+  activa boolean [default: true]
+  
+  Note: 'Historial de asignaciones de vehículos a choferes.'
+}
+
+// ============================================================================
+// MÓDULO: ÓRDENES DE TRABAJO
+// ============================================================================
+
+Table workorders_ordentrabajo {
+  id uuid [pk, default: `gen_random_uuid()`]
+  vehiculo_id uuid [not null, ref: > vehicles_vehiculo.id]
+  supervisor_id bigint [ref: > users_user.id]
+  jefe_taller_id bigint [ref: > users_user.id]
+  mecanico_id bigint [ref: > users_user.id]
+  responsable_id bigint [ref: > users_user.id]
+  chofer_id uuid [ref: > drivers_chofer.id]
+  estado varchar(20) [default: 'ABIERTA']
+  tipo varchar(50) [default: 'MANTENCION']
+  prioridad varchar(20) [default: 'MEDIA']
+  motivo text
+  diagnostico text
+  zona varchar(100)
+  site varchar(100)
+  backup_id uuid [ref: > vehicles_backupvehiculo.id]
+  estado_operativo_antes varchar(30)
+  estado_operativo_despues varchar(30)
+  causa_ingreso text
+  causa_salida text
+  tiempo_espera decimal(10,2)
+  tiempo_ejecucion decimal(10,2)
+  tiempo_total_reparacion decimal(10,2)
+  sla_vencido boolean [default: false]
+  fecha_limite_sla timestamptz
+  apertura timestamptz [default: `CURRENT_TIMESTAMP`]
+  fecha_diagnostico timestamptz
+  fecha_aprobacion_supervisor timestamptz
+  fecha_asignacion_mecanico timestamptz
+  fecha_inicio_ejecucion timestamptz
+  cierre timestamptz
+  
+  Note: 'Orden de trabajo. Entidad central del flujo de mantenimiento.'
+}
+
+Table workorders_itemot {
+  id uuid [pk, default: `gen_random_uuid()`]
+  ot_id uuid [not null, ref: > workorders_ordentrabajo.id]
+  tipo varchar(20) [not null]
+  descripcion text [not null]
+  cantidad integer [not null]
+  costo_unitario decimal(12,2) [not null]
+  
+  Note: 'Items de trabajo (repuestos y servicios) de una OT.'
+}
+
+Table workorders_presupuesto {
+  id uuid [pk, default: `gen_random_uuid()`]
+  ot_id uuid [unique, not null, ref: - workorders_ordentrabajo.id]
+  total decimal(14,2) [not null]
+  requiere_aprobacion boolean [default: false]
+  umbral decimal(14,2)
+  creado_en timestamptz [default: `CURRENT_TIMESTAMP`]
+  
+  Note: 'Presupuesto asociado a una OT (OneToOne).'
+}
+
+Table workorders_detallepresup {
+  id uuid [pk, default: `gen_random_uuid()`]
+  presupuesto_id uuid [not null, ref: > workorders_presupuesto.id]
+  concepto varchar(255) [not null]
+  cantidad integer [not null]
+  precio decimal(12,2) [not null]
+  
+  Note: 'Detalles del presupuesto.'
+}
+
+Table workorders_aprobacion {
+  id uuid [pk, default: `gen_random_uuid()`]
+  presupuesto_id uuid [unique, not null, ref: - workorders_presupuesto.id]
+  sponsor_id bigint [not null, ref: > users_user.id]
+  estado varchar(20) [default: 'PENDIENTE']
+  comentario text
+  fecha timestamptz [default: `CURRENT_TIMESTAMP`]
+  
+  Note: 'Aprobación de presupuesto por Sponsor (OneToOne).'
+}
+
+Table workorders_pausa {
+  id uuid [pk, default: `gen_random_uuid()`]
+  ot_id uuid [not null, ref: > workorders_ordentrabajo.id]
+  usuario_id bigint [not null, ref: > users_user.id]
+  tipo varchar(30) [default: 'OTRO']
+  motivo varchar(255) [not null]
+  es_automatica boolean [default: false]
+  inicio timestamptz [default: `CURRENT_TIMESTAMP`]
+  fin timestamptz
+  
+  Note: 'Pausas durante la ejecución de una OT.'
+}
+
+Table workorders_checklist {
+  id uuid [pk, default: `gen_random_uuid()`]
+  ot_id uuid [not null, ref: > workorders_ordentrabajo.id]
+  verificador_id bigint [ref: > users_user.id]
+  resultado varchar(10) [not null]
+  observaciones text
+  fecha timestamptz [default: `CURRENT_TIMESTAMP`]
+  
+  Note: 'Checklists de calidad para OT.'
+}
+
+Table workorders_evidencia {
+  id uuid [pk, default: `gen_random_uuid()`]
+  ot_id uuid [ref: > workorders_ordentrabajo.id]
+  url varchar(200) [not null]
+  tipo varchar(15) [default: 'FOTO']
+  descripcion text [default: '']
+  subido_por_id bigint [ref: > users_user.id]
+  subido_en timestamptz [default: `CURRENT_TIMESTAMP`]
+  invalidado boolean [default: false]
+  invalidado_por_id bigint [ref: > users_user.id]
+  invalidado_en timestamptz
+  motivo_invalidacion text
+  
+  Note: 'Evidencias fotográficas/documentales de una OT.'
+}
+
+Table workorders_versionevidencia {
+  id uuid [pk, default: `gen_random_uuid()`]
+  evidencia_original_id uuid [not null, ref: > workorders_evidencia.id]
+  url_anterior varchar(200) [not null]
+  invalidado_por_id bigint [ref: > users_user.id]
+  motivo text [not null]
+  invalidado_en timestamptz [default: `CURRENT_TIMESTAMP`]
+  
+  Note: 'Historial de versiones de evidencias invalidadas.'
+}
+
+Table workorders_comentarioot {
+  id uuid [pk, default: `gen_random_uuid()`]
+  ot_id uuid [not null, ref: > workorders_ordentrabajo.id]
+  usuario_id bigint [ref: > users_user.id]
+  comentario_padre_id uuid [ref: > workorders_comentarioot.id]
+  contenido text [not null]
+  menciones jsonb [default: '[]']
+  editado boolean [default: false]
+  creado_en timestamptz [default: `CURRENT_TIMESTAMP`]
+  editado_en timestamptz
+  
+  Note: 'Comentarios internos en una OT (soporta respuestas).'
+}
+
+Table workorders_bloqueovehiculo {
+  id uuid [pk, default: `gen_random_uuid()`]
+  vehiculo_id uuid [not null, ref: > vehicles_vehiculo.id]
+  creado_por_id bigint [ref: > users_user.id]
+  tipo varchar(50) [not null]
+  estado varchar(20) [default: 'ACTIVO']
+  motivo text [not null]
+  creado_en timestamptz [default: `CURRENT_TIMESTAMP`]
+  resuelto_en timestamptz
+  resuelto_por_id bigint [ref: > users_user.id]
+  
+  Note: 'Bloqueos o restricciones de vehículos.'
+}
+
+Table workorders_auditoria {
+  id bigserial [pk]
+  usuario_id bigint [ref: > users_user.id]
+  accion varchar(64) [not null]
+  objeto_tipo varchar(64) [not null]
+  objeto_id varchar(64) [not null]
+  payload jsonb [default: '{}']
+  ts timestamptz [default: `CURRENT_TIMESTAMP`]
+  
+  Note: 'Registro de auditoría de todas las acciones del sistema.'
+}
+
+// ============================================================================
+// MÓDULO: INVENTARIO
+// ============================================================================
+
+Table inventory_repuesto {
+  id uuid [pk, default: `gen_random_uuid()`]
+  codigo varchar(64) [unique, not null]
+  nombre varchar(255) [not null]
+  descripcion text
+  marca varchar(128)
+  categoria varchar(128)
+  precio_referencia decimal(12,2)
+  unidad_medida varchar(32) [default: 'UNIDAD']
+  activo boolean [default: true]
+  created_at timestamptz [default: `CURRENT_TIMESTAMP`]
+  updated_at timestamptz [default: `CURRENT_TIMESTAMP`]
+  
+  Note: 'Catálogo de repuestos disponibles.'
+}
+
+Table inventory_stock {
+  id bigserial [pk]
+  repuesto_id uuid [unique, not null, ref: - inventory_repuesto.id]
+  cantidad_actual integer [default: 0]
+  cantidad_minima integer [default: 0]
+  ubicacion varchar(128)
+  updated_at timestamptz [default: `CURRENT_TIMESTAMP`]
+  
+  Note: 'Stock actual de repuestos en bodega (OneToOne con Repuesto).'
+}
+
+Table inventory_movimientostock {
+  id uuid [pk, default: `gen_random_uuid()`]
+  repuesto_id uuid [not null, ref: > inventory_repuesto.id]
+  tipo varchar(20) [not null]
+  cantidad integer [not null]
+  cantidad_anterior integer [not null]
+  cantidad_nueva integer [not null]
+  motivo text
+  usuario_id bigint [not null, ref: > users_user.id]
+  fecha timestamptz [default: `CURRENT_TIMESTAMP`]
+  ot_id uuid [ref: > workorders_ordentrabajo.id]
+  item_ot_id uuid [ref: > workorders_itemot.id]
+  vehiculo_id uuid [ref: > vehicles_vehiculo.id]
+  
+  Note: 'Registro de movimientos de stock (entradas y salidas).'
+}
+
+Table inventory_solicitudrepuesto {
+  id uuid [pk, default: `gen_random_uuid()`]
+  ot_id uuid [not null, ref: > workorders_ordentrabajo.id]
+  item_ot_id uuid [ref: > workorders_itemot.id]
+  repuesto_id uuid [not null, ref: > inventory_repuesto.id]
+  cantidad_solicitada integer [not null]
+  cantidad_entregada integer [default: 0]
+  estado varchar(20) [default: 'PENDIENTE']
+  motivo text
+  solicitante_id bigint [ref: > users_user.id]
+  aprobador_id bigint [ref: > users_user.id]
+  entregador_id bigint [ref: > users_user.id]
+  fecha_solicitud timestamptz [default: `CURRENT_TIMESTAMP`]
+  fecha_aprobacion timestamptz
+  fecha_entrega timestamptz
+  
+  Note: 'Solicitudes de repuestos desde OT.'
+}
+
+Table inventory_historialrepuestovehiculo {
+  id uuid [pk, default: `gen_random_uuid()`]
+  vehiculo_id uuid [not null, ref: > vehicles_vehiculo.id]
+  repuesto_id uuid [not null, ref: > inventory_repuesto.id]
+  cantidad integer [not null]
+  fecha_uso timestamptz [default: `CURRENT_TIMESTAMP`]
+  ot_id uuid [ref: > workorders_ordentrabajo.id]
+  item_ot_id uuid [ref: > workorders_itemot.id]
+  costo_unitario decimal(12,2)
+  
+  Note: 'Histórico de repuestos utilizados por vehículo.'
+}
+
+// ============================================================================
+// MÓDULO: PROGRAMACIÓN
+// ============================================================================
+
+Table scheduling_agenda {
+  id uuid [pk, default: `gen_random_uuid()`]
+  vehiculo_id uuid [not null, ref: > vehicles_vehiculo.id]
+  coordinador_id bigint [not null, ref: > users_user.id]
+  fecha_programada timestamptz [not null]
+  motivo text [not null]
+  tipo_mantenimiento varchar(50) [default: 'PREVENTIVO']
+  zona varchar(100)
+  estado varchar(20) [default: 'PROGRAMADA']
+  observaciones text
+  ot_asociada_id uuid [unique, ref: - workorders_ordentrabajo.id]
+  created_at timestamptz [default: `CURRENT_TIMESTAMP`]
+  updated_at timestamptz [default: `CURRENT_TIMESTAMP`]
+  
+  Note: 'Agenda de programación de mantenimientos (OneToOne con OT cuando se crea).'
+}
+
+Table scheduling_cupodiario {
+  id uuid [pk, default: `gen_random_uuid()`]
+  fecha date [unique, not null]
+  cupos_totales integer [default: 10]
+  cupos_ocupados integer [default: 0]
+  zona varchar(100)
+  
+  Note: 'Cupos disponibles por día para programación.'
+}
+
+// ============================================================================
+// MÓDULO: EMERGENCIAS
+// ============================================================================
+
+Table emergencies_emergenciaruta {
+  id uuid [pk, default: `gen_random_uuid()`]
+  vehiculo_id uuid [not null, ref: > vehicles_vehiculo.id]
+  solicitante_id bigint [not null, ref: > users_user.id]
+  aprobador_id bigint [ref: > users_user.id]
+  supervisor_asignado_id bigint [ref: > users_user.id]
+  mecanico_asignado_id bigint [ref: > users_user.id]
+  descripcion text [not null]
+  ubicacion varchar(255) [not null]
+  zona varchar(100)
+  prioridad varchar(20) [default: 'ALTA']
+  estado varchar(20) [default: 'SOLICITADA']
+  fecha_solicitud timestamptz [default: `CURRENT_TIMESTAMP`]
+  fecha_aprobacion timestamptz
+  fecha_asignacion timestamptz
+  fecha_resolucion timestamptz
+  fecha_cierre timestamptz
+  ot_asociada_id uuid [unique, ref: - workorders_ordentrabajo.id]
+  observaciones text
+  
+  Note: 'Emergencias en ruta que requieren atención especial (OneToOne con OT cuando se asigna mecánico).'
+}
+
+// ============================================================================
+// MÓDULO: NOTIFICACIONES
+// ============================================================================
+
+Table notifications_notification {
+  id uuid [pk, default: `gen_random_uuid()`]
+  usuario_id bigint [not null, ref: > users_user.id]
+  tipo varchar(20) [default: 'GENERAL']
+  titulo varchar(200) [not null]
+  mensaje text [not null]
+  estado varchar(15) [default: 'NO_LEIDA']
+  ot_id uuid [ref: > workorders_ordentrabajo.id]
+  evidencia_id uuid [ref: > workorders_evidencia.id]
+  creada_en timestamptz [default: `CURRENT_TIMESTAMP`]
+  leida_en timestamptz
+  metadata jsonb [default: '{}']
+  
+  Note: 'Notificaciones del sistema para usuarios.'
+}
+
+// ============================================================================
+// RELACIONES ADICIONALES (OneToOne explícitas)
+// ============================================================================
+
+// Relación OneToOne: User -> Profile
+Ref: users_profile.user_id - users_user.id
+
+// Relación OneToOne: Presupuesto -> OrdenTrabajo
+Ref: workorders_presupuesto.ot_id - workorders_ordentrabajo.id
+
+// Relación OneToOne: Aprobacion -> Presupuesto
+Ref: workorders_aprobacion.presupuesto_id - workorders_presupuesto.id
+
+// Relación OneToOne: Stock -> Repuesto
+Ref: inventory_stock.repuesto_id - inventory_repuesto.id
+
+// Relación OneToOne: Agenda -> OrdenTrabajo (cuando se crea OT)
+Ref: scheduling_agenda.ot_asociada_id - workorders_ordentrabajo.id
+
+// Relación OneToOne: EmergenciaRuta -> OrdenTrabajo (cuando se asigna mecánico)
+Ref: emergencies_emergenciaruta.ot_asociada_id - workorders_ordentrabajo.id
+
+// ============================================================================
+// NOTAS FINALES
+// ============================================================================
+
+// Este diagrama representa el modelo completo de la base de datos
+// de la Plataforma de Gestión de Flota Pepsico.
+//
+// Para visualizar:
+// 1. Ir a https://dbdiagram.io
+// 2. Copiar y pegar este código
+// 3. El diagrama se renderizará automáticamente
+//
+// Módulos del sistema:
+// - Usuarios y Autenticación
+// - Vehículos
+// - Choferes
+// - Órdenes de Trabajo
+// - Inventario
+// - Programación
+// - Emergencias
+// - Notificaciones
+
